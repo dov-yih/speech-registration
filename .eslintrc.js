@@ -41,6 +41,7 @@ module.exports = {
       "never"
     ],
     "no-console": "off",
-    "react/prop-types": 1
+    "react/prop-types": 1,
+    "no-unused-vars": 1
   }
 };
