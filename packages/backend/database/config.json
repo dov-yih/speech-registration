@@ -1,15 +1,22 @@
 {
   "development": {
     "username": "root",
-    "password": null,
-    "database": "define-your-own-databse-for-development",
+    "password": "1203my",
+    "database": "speech-registrantion",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
   "test": {
     "username": "root",
-    "password": null,
-    "database": "define-your-own-databse-for-unittest",
+    "password": "1203my",
+    "database": "speech-registrantion",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "root",
+    "password": "1203my",
+    "database": "speen-registrantion",
     "host": "127.0.0.1",
     "dialect": "mysql"
   }
