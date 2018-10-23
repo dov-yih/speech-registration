@@ -1,0 +1,4 @@
+packages/frontend/config/
+packages/frontend/scripts/
+packages/frontend/build/
+node_modules
