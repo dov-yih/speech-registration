@@ -6,22 +6,32 @@ import {
   Row,
   Col,
 } from 'react-bootstrap'
+import {getSpeeches} from './request'
+import SpeechList from '@/components/speech/List.jsx'
 
 export default class Home extends Component {
-  static propTypes = {
-    prop: PropTypes
+  constructor(props) {
+    super(props)
+    this.state = {
+      speeches: []
+    }
   }
 
+  static propTypes = {  }
+  async componentDidMount() {
+    let resp = await getSpeeches()
+    const speeches = resp.data
+    this.setState({ speeches})
+  }
   render() {
+    const { speeches } = this.state
     return <div>
       <TopNavBar />
       <Grid>
         <Row>
-          <Col>col</Col>
+          <SpeechList dataSet={speeches} />
         </Row>
-        <Row>
-          <Col>col</Col>
-        </Row>
+
       </Grid>
     </div>
   }
