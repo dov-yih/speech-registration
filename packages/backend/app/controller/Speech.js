@@ -1,14 +1,11 @@
 const {Controller} = require('egg')
-class PostController extends Controller {
+class SpeechController extends Controller {
   async index() {
     const {
-      ctx,
+      ctx
     } = this
-
-    ctx.body = {
-      id: 1
-    }
-    ctx.status = 201
+    ctx.body  = await ctx.model.Speech.findAll()
+    // ctx.respond.header('Access-Control-Allow-Origin', '*')
   }
 }
-module.exports = PostController
+module.exports = SpeechController

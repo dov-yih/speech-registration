@@ -18,6 +18,17 @@ module.exports = appInfo => {
     username: 'root',
     password: '1203my'
   }
+  config.security = {
+    domainWhiteList: ['http://localhost:7701', 'http://localhost:7702'],
+  }
+  config.cors = {
+    // {string|Function}
+    enable: true,
+    package: 'egg-cors',
+    origin: '*',
+    // {string|Array}
+    allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH'
+  }
 
   return config
 }
