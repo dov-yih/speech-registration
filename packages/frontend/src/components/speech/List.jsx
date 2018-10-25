@@ -7,8 +7,10 @@ export default class List extends Component {
 
   render() {
     const {dataSet} = this.props
-    return <PanelGroup>
-        {dataSet.map(speech => <Card dataSrc={speech} />)}
+    return (
+      <PanelGroup id="speech-list">
+        {dataSet.map((speech, idx) => <Card key={idx} dataSrc={speech} />)}
       </PanelGroup>
+    )
   }
 }

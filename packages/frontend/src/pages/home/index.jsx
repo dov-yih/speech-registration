@@ -29,7 +29,9 @@ export default class Home extends Component {
       <TopNavBar />
       <Grid>
         <Row>
-          <SpeechList dataSet={speeches} />
+          <Col md={8} mdOffset={2}>
+            <SpeechList dataSet={speeches} />
+          </Col>
         </Row>
 
       </Grid>

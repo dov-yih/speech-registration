@@ -1,30 +1,40 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import {
-  Media,
   Panel
 } from 'react-bootstrap'
+import withStyles from 'react-jss'
+import './style.css'
 const { Heading, Title, Body, Footer, collapse} = Panel
-
-export default class Speech extends Component {
+const styles={
+  bigTitle: {
+    fontSize: '26px'
+  }
+}
+export default
+// @withStyles(styles)
+class Speech extends Component {
   static propTypes = {  }
-
+  handleChange(e){
+    console.log(e)
+  }
   render() {
-    const {dataSrc} = this.props
+    const {dataSrc, classes} = this.props
+    console.log(classes)
     const {id, subject, introduce, url, isPPT, speaker_name,tags,pre_knowledge, created_date} = dataSrc
     return (
-      <Panel>
+      <Panel eventKey={id} bsStyle="info">
         <Heading>
-          <Title>{subject}</Title>
-          {tags.toString()}
+          <Title className='bigTitle' componentClass="h1">
+          {subject}
+          </Title>
         </Heading>
         <Body>
-        <p>{introduce}</p>
-        <p>{pre_knowledge}</p>
+          {tags.toString()}
+          <p>{introduce}</p>
+          <p>{pre_knowledge}</p>
         </Body>
-        <Footer>
-          {created_date}
-        </Footer>
+        <Footer>{created_date}</Footer>
       </Panel>
     )
   }
