@@ -3,6 +3,7 @@ module.exports = app => {
     router,
     controller
   } = app
+  const { speech,login } = controller
   router.resources('speech', '/speech', controller.speech)
-  router.post('getPublicKey', '/key', controller.login)
+  router.post('getPublicKey', '/login', controller.login.index)
 }

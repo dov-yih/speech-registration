@@ -1,3 +1,7 @@
+const {
+  JSEncrypt
+} = require('../utils/jsencrypt.js')
+
 // 获取 Token
 exports.getAccessToken = ctx => {
   let bearerToken = ctx.request.header.authorization
@@ -36,4 +40,13 @@ exports.error = (ctx, code, message) => {
     message: message
   }
   ctx.status = code
+}
+
+exports.decrypt = function (encryData, privateKey) {
+  console.log(encryData, privateKey)
+  let encrypt = new JSEncrypt()
+  encrypt.setPrivateKey(privateKey)
+  let decrypted = encrypt.decrypt(encryData)
+  console.log(decrypted)
+  return decrypted
 }

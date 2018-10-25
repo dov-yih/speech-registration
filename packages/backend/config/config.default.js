@@ -20,6 +20,9 @@ module.exports = appInfo => {
   }
   config.security = {
     domainWhiteList: ['http://localhost:7701', 'http://localhost:7702'],
+    csrf: {
+      enable: false,
+    },
   }
   config.cors = {
     // {string|Function}
@@ -34,7 +37,7 @@ module.exports = appInfo => {
     enable: false, // ?
     secret: '123456'
   }
-  config.ras = {
+  config.rsa = {
     public: `-----BEGIN PUBLIC KEY-----
 MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCeY2GvSwNXIS3R+eK3HoyO6+up
 XolhWRQhokiW0DANe7xhfGnUZcaWqABoGDHWEObpJCm9hvAs4rP0XEvZsWyuobI+
