@@ -1,18 +1,40 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import {
-  Panel
+  Panel,
+  Label,
 } from 'react-bootstrap'
 import withStyles from 'react-jss'
-import './style.css'
+
+import Tags from './Tags'
+import Section from './Section'
 const { Heading, Title, Body, Footer, collapse} = Panel
-const styles={
-  bigTitle: {
-    fontSize: '26px'
+const title = {
+  display: 'inline-block'
+}
+const styles = {
+  card: {
+    marginBottom: '35px !important',
+  },
+  subTitile: {
+    fontSize: '18px',
+    marginLeft: '20px',
+    ...title
+  },
+  title: {
+    fontSize: '26px',
+    ...title
   }
 }
+
+/**
+ *
+ * @see React-Bootstrap ClassName Order https://github.com/react-bootstrap/react-bootstrap/issues/2675
+ * @class Speech
+ * @extends {Component}
+ */
 export default
-// @withStyles(styles)
+@withStyles(styles)
 class Speech extends Component {
   static propTypes = {  }
   handleChange(e){
@@ -20,19 +42,39 @@ class Speech extends Component {
   }
   render() {
     const {dataSrc, classes} = this.props
-    console.log(classes)
-    const {id, subject, introduce, url, isPPT, speaker_name,tags,pre_knowledge, created_date} = dataSrc
+    const {
+      id,
+      subject,
+      introduce,
+      direction,
+      url,
+      isPPT,
+      speaker_name,
+      tags,
+      pre_knowledge,
+      created_date,
+      speech_date,
+    } = dataSrc
     return (
-      <Panel eventKey={id} bsStyle="info">
+      <Panel className={classes.card} eventKey={id} bsStyle="info">
         <Heading>
-          <Title className='bigTitle' componentClass="h1">
-          {subject}
+          <Title className={classes.title} componentClass="h1">
+            {subject}
+          </Title>
+          <Title className={classes.subTitile} componentClass="h2">
+            {speaker_name}
           </Title>
         </Heading>
         <Body>
-          {tags.toString()}
-          <p>{introduce}</p>
-          <p>{pre_knowledge}</p>
+          <Tags dataSet={tags} />
+          <Section label="介绍">{introduce}</Section>
+          <Section label="预备知识">{pre_knowledge}</Section>
+          <Section label="演讲时间">
+            {speech_date}
+          </Section>
+          <Section label="链接" url>
+            {url}
+          </Section>
         </Body>
         <Footer>{created_date}</Footer>
       </Panel>
