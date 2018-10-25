@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "null",
   "dependencies": {
+    "dateformat": "^3.0.3",
     "egg": "^2.12.0",
     "egg-cors": "^2.1.1",
     "egg-scripts": "^2.10.0",
@@ -25,9 +26,9 @@
   "scripts": {
     "autod": "autod",
     "lint": "eslint -c ../../.eslintrc.js -f table --ext .js,.jsx . --fix",
-    "test": "egg-bin test",
-    "cov": "egg-bin cov",
-    "dev": "egg-bin dev",
+    "test": "./node_modules/.bin/egg-bin test",
+    "cov": "./node_modules/.bin/egg-bin cov",
+    "dev": "./node_modules/.bin/egg-bin dev",
     "ci": "npm run lint && NODE_ENV=test npx sequelize db:migrate && npm run cov"
   },
   "ci": {
