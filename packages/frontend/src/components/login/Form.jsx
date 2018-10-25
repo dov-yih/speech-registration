@@ -1,21 +1,39 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import {
-  Row,
-  Col,
+  Alert,
   Button,
   FormGroup,
   FormControl,
-  ControlLabel,
+  Modal,
 } from 'react-bootstrap'
 import withStyles from 'react-jss'
 
+import JSEncrypt from '@/lib/jsencrypt.min.js'
+import { loginReq } from '@/pages/login/request'
+
+const { Feedback } = FormControl
+const { Dialog, Header,Title, Body,Footer } = Modal
 const styles = {
   formControl: {
     height: '40px !important',
     margin: '25px 0'
+  },
+  errorModal: {
+    marginTop: '10%',
+    '& > .modal-dialog': {
+      width: '450px !important',
+    }
   }
 }
+
+const PUBLIC_KEY = `-----BEGIN PUBLIC KEY-----
+MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCeY2GvSwNXIS3R+eK3HoyO6+up
+XolhWRQhokiW0DANe7xhfGnUZcaWqABoGDHWEObpJCm9hvAs4rP0XEvZsWyuobI+
+oJnvvkZgKxVxKoJbqI9tKabvzOcbNv0zeJQiRtUtuQ9xBe4gikmx4Vpaq5DUoJhK
+HaP114KP/KbXJEqjpwIDAQAB
+-----END PUBLIC KEY-----`;
+
 export default
 @withStyles(styles)
 class LoginForm extends Component {
@@ -26,7 +44,11 @@ class LoginForm extends Component {
     this.state = {
       username: '',
       password: '',
+      isShow: false
     }
+  }
+  handleClose = ()=> {
+    this.setState({isShow: false})
   }
   validateUsername() {
     const {username} = this.state
@@ -52,10 +74,26 @@ class LoginForm extends Component {
     }
     return 'error'
   }
-
+  submit = async () => {
+    if( this.validatePassword() !== 'success'
+      || this.validateUsername() !== 'success' ){
+      return false
+    }
+    const { username, password } = this.state
+    let sign = new JSEncrypt()
+    sign.setPublicKey(PUBLIC_KEY)
+    let encrypted = sign.encrypt({ username, password })
+    try{
+      let resp = await loginReq(encrypted)
+    } catch(e) {
+      // console.log(e)
+      this.setState({isShow: true})
+    }
+    return true
+  }
   render() {
     const { classes } = this.props
-    const {username, password} = this.state
+    const {username, password, isShow} = this.state
     return (
       <div>
         <h2>Welcome Comrade</h2>
@@ -72,9 +110,9 @@ class LoginForm extends Component {
             placeholder="Your School Number"
             onChange={e => this.setState({ username: e.target.value })}
           />
-
+          <Feedback />
         </FormGroup>
-      <FormGroup
+        <FormGroup
           validationState={this.validatePassword()}
         controlId="password">
           <FormControl
@@ -84,10 +122,26 @@ class LoginForm extends Component {
             placeholder="Password"
             onChange={ e => this.setState({password: e.target.value})}
           />
+          <Feedback />
         </FormGroup>
-        <Button bsStyle="primary" block>
+        <Button bsStyle="primary" onClick={this.submit} block>
           Login
         </Button>
+        <Modal show={isShow} className={classes.errorModal}>
+            <Header>
+              <Title bsClass="text-info">
+                Network Error
+              </Title>
+            </Header>
+            <Body >
+              <Alert bsClass="text-danger text-center">
+                Place reflesh pages.
+              </Alert>
+            </Body>
+            <Footer>
+              <Button onClick={this.handleClose}>Close</Button>
+            </Footer>
+        </Modal>
       </div>
     )
   }
