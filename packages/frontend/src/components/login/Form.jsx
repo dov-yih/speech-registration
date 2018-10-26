@@ -12,10 +12,8 @@ import withStyles from 'react-jss'
 import JSEncrypt from '@/lib/jsencrypt.min.js'
 import { loginReq } from '@/pages/login/request'
 
-import { PUBLIC_KEY} from "../../keys.json"
-
-console.log(PUBLIC_KEY)
-
+import { PUBLIC_KEY} from '../../keys.json'
+import { SCHOOL_NUMBER } from '../../global'
 const { Feedback } = FormControl
 const { Dialog, Header,Title, Body,Footer } = Modal
 const styles = {
@@ -52,10 +50,7 @@ class LoginForm extends Component {
     if(!username) {
       return null
     }
-    // @BUG here will wring when school number start with 3
-    // I think 1,2 is enough, because I don't think this app
-    // can live 12 years.
-    if(/[12][0-9]{7,7}/.test(username)) {
+    if (SCHOOL_NUMBER.test(username)) {
       return 'success'
     }
     return 'error'
@@ -78,7 +73,7 @@ class LoginForm extends Component {
     }
     const { username, password } = this.state
     let sign = new JSEncrypt()
-    sign.setPublicKey(PUBLIC_KEY);
+    sign.setPublicKey(PUBLIC_KEY)
     let encrypted = sign.encrypt(JSON.stringify({ username, password }))
     console.log(encrypted)
     try{
@@ -112,7 +107,7 @@ class LoginForm extends Component {
         </FormGroup>
         <FormGroup
           validationState={this.validatePassword()}
-        controlId="password">
+          controlId="password">
           <FormControl
             type="text"
             value={password}
@@ -126,19 +121,19 @@ class LoginForm extends Component {
           Login
         </Button>
         <Modal show={isShow} className={classes.errorModal}>
-            <Header>
-              <Title bsClass="text-info">
+          <Header>
+            <Title bsClass="text-info">
                 Network Error
-              </Title>
-            </Header>
-            <Body >
-              <Alert bsClass="text-danger text-center">
+            </Title>
+          </Header>
+          <Body >
+            <Alert bsClass="text-danger text-center">
                 Place reflesh pages.
-              </Alert>
-            </Body>
-            <Footer>
-              <Button onClick={this.handleClose}>Close</Button>
-            </Footer>
+            </Alert>
+          </Body>
+          <Footer>
+            <Button onClick={this.handleClose}>Close</Button>
+          </Footer>
         </Modal>
       </div>
     )
