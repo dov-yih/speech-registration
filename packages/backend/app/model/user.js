@@ -14,7 +14,11 @@ module.exports = (app) => {
   }, {
     underscored: true
   })
-  User.associate = function (models) {
+  User.associate = function () {
+    const { Speech, User } = app.model
+    User.hasMany(Speech, {
+      foreignKey: 's_no'
+    })
     // associations can be defined here
   }
   return User

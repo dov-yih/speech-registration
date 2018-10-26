@@ -2591,6 +2591,13 @@ egg-path-matching@^1.0.0, egg-path-matching@^1.0.1:
   dependencies:
     path-to-regexp "^1.7.0"
 
+egg-router-plus@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/egg-router-plus/-/egg-router-plus-1.3.0.tgz#94f73447141e75ce82620d04d4dc8e500ea8b27c"
+  integrity sha512-Y8aZ5/8cn52Hxa1c6uhASwxAzFHaihsyIOCjkKnjV/n6Z4GX9RSUK3jaxclQecei1dp0HDwEuhYwBqCBDtSaoQ==
+  dependencies:
+    is-type-of "^1.2.0"
+
 egg-schedule@^3.4.0:
   version "3.4.0"
   resolved "https://registry.yarnpkg.com/egg-schedule/-/egg-schedule-3.4.0.tgz#1a70bda4575b37ff86a0c5c7bcdd68557555ed07"

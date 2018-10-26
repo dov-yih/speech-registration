@@ -18,7 +18,14 @@ module.exports = app => {
   }, {
     underscored: true
   })
-  Speech.associate = function(models) {
+  Speech.associate = function() {
+    const { User, Speech } = app.model
+    Speech.belongsTo(User, {
+      as: 'Speaker',
+      foreignKey: 's_no',
+      // sourceKey: 'user_id'
+    })
+    // retur
     // associations can be defined here
   }
   return Speech

@@ -39,5 +39,9 @@ class SpeechController extends Controller {
       }
     })
   }
+
+  async show() {
+
+  }
 }
 module.exports = SpeechController
