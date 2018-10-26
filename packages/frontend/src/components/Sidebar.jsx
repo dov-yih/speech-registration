@@ -44,6 +44,7 @@ export default class Sidebar extends Component {
             {/* WRONG @see https://github.com/react-bootstrap/react-router-bootstrap/blob/6ee8df44d93b73e737b472096e7e1f8cb8f6d4e1/src/LinkContainer.js#L40 */}
             {routes.map(({ path, exact, name }, idx) => (
               <LinkContainer
+                key={idx}
                 exact={exact}
                 to={`${prefix}${path === "/" ? "" : path}`}
               >
