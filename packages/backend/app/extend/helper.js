@@ -1,7 +1,5 @@
-const {
-  JSEncrypt
-} = require('../utils/jsencrypt.js')
 
+const {encrypt, decrypt} = require('../../utils/rsa.js')
 // 获取 Token
 exports.getAccessToken = ctx => {
   let bearerToken = ctx.request.header.authorization
@@ -42,11 +40,6 @@ exports.error = (ctx, code, message) => {
   ctx.status = code
 }
 
-exports.decrypt = function (encryData, privateKey) {
-  console.log(encryData, privateKey)
-  let encrypt = new JSEncrypt()
-  encrypt.setPrivateKey(privateKey)
-  let decrypted = encrypt.decrypt(encryData)
-  console.log(decrypted)
-  return decrypted
-}
+exports.decrypt = decrypt
+
+exports.encrypt = encrypt
