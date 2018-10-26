@@ -1,25 +1,26 @@
 import Index from './pages/Index'
 import New from './pages/New'
 import Profile from './pages/Profile'
-import Password from './pages/Password'
-export default [
-  {
+import Setting from './pages/Setting'
+export default [{
     path: '/',
     exact: true,
+    name: 'Home',
     component: Index,
-  },
-  {
-    path: '/new',
-    exact: true,
-    component: New,
-  },
-  {
+  }, {
     path: '/profile',
     exact: true,
+    name: 'Profile',
     component: Profile,
-  },{
-    path: '/password',
+  }, {
+    path: '/new',
     exact: true,
-    component: Password,
+    name: 'New',
+    component: New,
+  }, {
+    path: '/setting',
+    name: 'Setting',
+    exact: true,
+    component: Setting,
   }
 ]

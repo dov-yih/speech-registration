@@ -9,51 +9,49 @@ import {
 import {
   LinkContainer
 } from 'react-router-bootstrap'
+
+import routes from '@/pages/admin/routes'
+import Avatar from './Avatar'
+
 export default class Sidebar extends Component {
   static propTypes = {
   }
   constructor(props) {
     super(props)
     this.state = {
-      activeKey: -1
+      activeKey: -1,
+      currentUser: {
+        name: '',
+        s_no: '',
+        avatar: ''
+      }
     }
   }
   handleSelect = (key,e) => {
     // this.setState({ activeKey: key})
   }
+
   render() {
     const {prefix} = this.props
-    const {activeKey} = this.state
-    console.log(activeKey);
-    return (
-      <Nav
-        activeKey={activeKey}
-        bsStyle="pills"
-        stacked
-        onSelect={this.handleSelect}
-      >
-      {/* WRONG @see https://github.com/react-bootstrap/react-router-bootstrap/blob/6ee8df44d93b73e737b472096e7e1f8cb8f6d4e1/src/LinkContainer.js#L40 */}
-        <LinkContainer exact to={`${prefix}`}>
-          <NavItem eventKey={1}>
-            Home
-          </NavItem>
-        </LinkContainer>
-        <LinkContainer to={`${prefix}/profile`}>
-          <NavItem eventKey={2}>
-            Profile
-          </NavItem>
-        </LinkContainer>
-        <LinkContainer to={`${prefix}/password`}>
-          <NavItem  eventKey={3}>
-            Setting
-          </NavItem>
-        </LinkContainer>
-        <LinkContainer to={`${prefix}/new`}>
-          <NavItem eventKey={4}>
-            New
-          </NavItem>
-        </LinkContainer>
-      </Nav>
-    )
+    const {activeKey,currentUser: { name, s_no, avatar}} = this.state
+
+    return <div style={{padding: '0 15%'}}>
+        <Row>
+            <Avatar />
+        </Row>
+        <Row>
+          <Nav activeKey={activeKey} bsStyle="pills" stacked onSelect={this.handleSelect}>
+            {/* WRONG @see https://github.com/react-bootstrap/react-router-bootstrap/blob/6ee8df44d93b73e737b472096e7e1f8cb8f6d4e1/src/LinkContainer.js#L40 */}
+            {routes.map(({ path, exact, name }, idx) => (
+              <LinkContainer
+                exact={exact}
+                to={`${prefix}${path === "/" ? "" : path}`}
+              >
+                <NavItem eventKey={1}>{name}</NavItem>
+              </LinkContainer>
+            ))}
+          </Nav>
+        </Row>
+      </div>;
   }
 }

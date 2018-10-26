@@ -22,11 +22,11 @@ export default class Admin extends Component {
     const {match: {url}} = this.props
     return (
       <Row>
-        <Col bsStyle="pills" stacked="true" md={4}>
+        <Col bsStyle="pills" stacked="true" md={3}>
           <Sidebar prefix={url} />
         </Col>
         {/* @see https://reacttraining.com/react-router/web/example/recursive-paths */}
-        <Col md={8}>
+        <Col md={8} mdOffset={1}>
           {
             routes.map(
               ({path, exact, component }, idx) =>

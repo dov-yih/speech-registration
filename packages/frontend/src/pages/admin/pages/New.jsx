@@ -8,7 +8,7 @@ export default class New extends Component {
   render() {
     return (
       <div>
-        New
+        Create a New Speech.
       </div>
     )
   }

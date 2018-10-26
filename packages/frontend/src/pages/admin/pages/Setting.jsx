@@ -8,7 +8,7 @@ export default class Password extends Component {
   render() {
     return (
       <div>
-        Password
+        Setting Page.
       </div>
     )
   }

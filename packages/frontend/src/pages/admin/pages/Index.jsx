@@ -8,7 +8,7 @@ export default class Index extends Component {
   render() {
     return (
       <div>
-        Index
+        List self speech.
       </div>
     )
   }
