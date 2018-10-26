@@ -22,7 +22,35 @@ class AdminSpeechController extends Controller {
     let selfSpeeches = await model.Speech.findAll({where: {
       s_no: '17058511'
     }})
-    ctx.body = selfSpeeches || {msg: 'test'}
+    return ctx.body = selfSpeeches.map(speech => {
+      const {
+        id,
+        direction,
+        speaker_name,
+        isPPT,
+        url,
+        subject,
+        introduce,
+        pre_knowledge,
+        tags,
+        created_at,
+        speech_date,
+      } = speech
+      return {
+        tags: tags.split(','),
+        speech_date: dateFormat(speech_date, 'fullDate'),
+        created_date: dateFormat(created_at, 'fullDate'),
+        id,
+        direction,
+        speaker_name,
+        isPPT,
+        url,
+        subject,
+        introduce,
+        pre_knowledge,
+      }
+    })
+    // ctx.body = selfSpeeches || {msg: 'test'}
   }
 }
 module.exports = AdminSpeechController
