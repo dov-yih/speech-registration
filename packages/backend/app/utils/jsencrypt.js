@@ -1,7 +1,7 @@
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
     typeof define === 'function' && define.amd ? define(['exports'], factory) :
-    (factory((global.JSEncrypt = {})))
+      (factory((global.JSEncrypt = {})))
 }(this, (function (exports) {
   'use strict'
 
@@ -59,7 +59,7 @@
     var r = 0
     while (x != 0) {
       x &= x - 1
-        ++r
+      ++r
     }
     return r
   }
@@ -146,11 +146,11 @@ and limitations under the License.
   var extendStatics = function (d, b) {
     extendStatics = Object.setPrototypeOf ||
       ({
-          __proto__: []
-        }
+        __proto__: []
+      }
         instanceof Array && function (d, b) {
-          d.__proto__ = b
-        }) ||
+        d.__proto__ = b
+      }) ||
       function (d, b) {
         for (var p in b)
           if (b.hasOwnProperty(p)) d[p] = b[p]
@@ -287,15 +287,15 @@ and limitations under the License.
         }
       }
       switch (char_count) {
-        case 1:
-          throw new Error('Base64 encoding incomplete: at least 2 bits missing')
-        case 2:
-          out[out.length] = (bits >> 10)
-          break
-        case 3:
-          out[out.length] = (bits >> 16)
-          out[out.length] = (bits >> 8) & 0xFF
-          break
+      case 1:
+        throw new Error('Base64 encoding incomplete: at least 2 bits missing')
+      case 2:
+        out[out.length] = (bits >> 10)
+        break
+      case 3:
+        out[out.length] = (bits >> 16)
+        out[out.length] = (bits >> 8) & 0xFF
+        break
       }
       return out
     },
@@ -441,14 +441,14 @@ and limitations under the License.
         s += this.hexByte(this.get(i))
         if (raw !== true) {
           switch (i & 0xF) {
-            case 0x7:
-              s += '  '
-              break
-            case 0xF:
-              s += '\n'
-              break
-            default:
-              s += ' '
+          case 0x7:
+            s += '  '
+            break
+          case 0xF:
+            s += '\n'
+            break
+          default:
+            s += ' '
           }
         }
       }
@@ -548,7 +548,7 @@ and limitations under the License.
         len <<= 3
         while (((+s ^ pad) & 0x80) == 0) {
           s = +s << 1
-            --len
+          --len
         }
         s = '(' + len + ' bit)\n'
       }
@@ -645,70 +645,70 @@ and limitations under the License.
     }
     ASN1.prototype.typeName = function () {
       switch (this.tag.tagClass) {
-        case 0: // universal
-          switch (this.tag.tagNumber) {
-            case 0x00:
-              return 'EOC'
-            case 0x01:
-              return 'BOOLEAN'
-            case 0x02:
-              return 'INTEGER'
-            case 0x03:
-              return 'BIT_STRING'
-            case 0x04:
-              return 'OCTET_STRING'
-            case 0x05:
-              return 'NULL'
-            case 0x06:
-              return 'OBJECT_IDENTIFIER'
-            case 0x07:
-              return 'ObjectDescriptor'
-            case 0x08:
-              return 'EXTERNAL'
-            case 0x09:
-              return 'REAL'
-            case 0x0A:
-              return 'ENUMERATED'
-            case 0x0B:
-              return 'EMBEDDED_PDV'
-            case 0x0C:
-              return 'UTF8String'
-            case 0x10:
-              return 'SEQUENCE'
-            case 0x11:
-              return 'SET'
-            case 0x12:
-              return 'NumericString'
-            case 0x13:
-              return 'PrintableString' // ASCII subset
-            case 0x14:
-              return 'TeletexString' // aka T61String
-            case 0x15:
-              return 'VideotexString'
-            case 0x16:
-              return 'IA5String' // ASCII
-            case 0x17:
-              return 'UTCTime'
-            case 0x18:
-              return 'GeneralizedTime'
-            case 0x19:
-              return 'GraphicString'
-            case 0x1A:
-              return 'VisibleString' // ASCII subset
-            case 0x1B:
-              return 'GeneralString'
-            case 0x1C:
-              return 'UniversalString'
-            case 0x1E:
-              return 'BMPString'
-          }
-          return 'Universal_' + this.tag.tagNumber.toString()
-        case 1:
-          return 'Application_' + this.tag.tagNumber.toString()
-        case 2:
-          return '[' + this.tag.tagNumber.toString() + ']' // Context
-        case 3:
-          return 'Private_' + this.tag.tagNumber.toString()
+      case 0: // universal
+        switch (this.tag.tagNumber) {
+        case 0x00:
+          return 'EOC'
+        case 0x01:
+          return 'BOOLEAN'
+        case 0x02:
+          return 'INTEGER'
+        case 0x03:
+          return 'BIT_STRING'
+        case 0x04:
+          return 'OCTET_STRING'
+        case 0x05:
+          return 'NULL'
+        case 0x06:
+          return 'OBJECT_IDENTIFIER'
+        case 0x07:
+          return 'ObjectDescriptor'
+        case 0x08:
+          return 'EXTERNAL'
+        case 0x09:
+          return 'REAL'
+        case 0x0A:
+          return 'ENUMERATED'
+        case 0x0B:
+          return 'EMBEDDED_PDV'
+        case 0x0C:
+          return 'UTF8String'
+        case 0x10:
+          return 'SEQUENCE'
+        case 0x11:
+          return 'SET'
+        case 0x12:
+          return 'NumericString'
+        case 0x13:
+          return 'PrintableString' // ASCII subset
+        case 0x14:
+          return 'TeletexString' // aka T61String
+        case 0x15:
+          return 'VideotexString'
+        case 0x16:
+          return 'IA5String' // ASCII
+        case 0x17:
+          return 'UTCTime'
+        case 0x18:
+          return 'GeneralizedTime'
+        case 0x19:
+          return 'GraphicString'
+        case 0x1A:
+          return 'VisibleString' // ASCII subset
+        case 0x1B:
+          return 'GeneralString'
+        case 0x1C:
+          return 'UniversalString'
+        case 0x1E:
+          return 'BMPString'
+        }
+        return 'Universal_' + this.tag.tagNumber.toString()
+      case 1:
+        return 'Application_' + this.tag.tagNumber.toString()
+      case 2:
+        return '[' + this.tag.tagNumber.toString() + ']' // Context
+      case 3:
+        return 'Private_' + this.tag.tagNumber.toString()
       }
     }
     ASN1.prototype.content = function (maxLength) {
@@ -727,48 +727,48 @@ and limitations under the License.
         return this.stream.parseOctetString(content, content + len, maxLength)
       }
       switch (this.tag.tagNumber) {
-        case 0x01: // BOOLEAN
-          return (this.stream.get(content) === 0) ? 'false' : 'true'
-        case 0x02: // INTEGER
-          return this.stream.parseInteger(content, content + len)
-        case 0x03: // BIT_STRING
-          return this.sub ? '(' + this.sub.length + ' elem)' :
-            this.stream.parseBitString(content, content + len, maxLength)
-        case 0x04: // OCTET_STRING
-          return this.sub ? '(' + this.sub.length + ' elem)' :
-            this.stream.parseOctetString(content, content + len, maxLength)
+      case 0x01: // BOOLEAN
+        return (this.stream.get(content) === 0) ? 'false' : 'true'
+      case 0x02: // INTEGER
+        return this.stream.parseInteger(content, content + len)
+      case 0x03: // BIT_STRING
+        return this.sub ? '(' + this.sub.length + ' elem)' :
+          this.stream.parseBitString(content, content + len, maxLength)
+      case 0x04: // OCTET_STRING
+        return this.sub ? '(' + this.sub.length + ' elem)' :
+          this.stream.parseOctetString(content, content + len, maxLength)
           // case 0x05: // NULL
-        case 0x06: // OBJECT_IDENTIFIER
-          return this.stream.parseOID(content, content + len, maxLength)
-          // case 0x07: // ObjectDescriptor
-          // case 0x08: // EXTERNAL
-          // case 0x09: // REAL
-          // case 0x0A: // ENUMERATED
-          // case 0x0B: // EMBEDDED_PDV
-        case 0x10: // SEQUENCE
-        case 0x11: // SET
-          if (this.sub !== null) {
-            return '(' + this.sub.length + ' elem)'
-          } else {
-            return '(no elem)'
-          }
-        case 0x0C: // UTF8String
-          return stringCut(this.stream.parseStringUTF(content, content + len), maxLength)
-        case 0x12: // NumericString
-        case 0x13: // PrintableString
-        case 0x14: // TeletexString
-        case 0x15: // VideotexString
-        case 0x16: // IA5String
-          // case 0x19: // GraphicString
-        case 0x1A: // VisibleString
-          // case 0x1B: // GeneralString
-          // case 0x1C: // UniversalString
-          return stringCut(this.stream.parseStringISO(content, content + len), maxLength)
-        case 0x1E: // BMPString
-          return stringCut(this.stream.parseStringBMP(content, content + len), maxLength)
-        case 0x17: // UTCTime
-        case 0x18: // GeneralizedTime
-          return this.stream.parseTime(content, content + len, (this.tag.tagNumber == 0x17))
+      case 0x06: // OBJECT_IDENTIFIER
+        return this.stream.parseOID(content, content + len, maxLength)
+        // case 0x07: // ObjectDescriptor
+        // case 0x08: // EXTERNAL
+        // case 0x09: // REAL
+        // case 0x0A: // ENUMERATED
+        // case 0x0B: // EMBEDDED_PDV
+      case 0x10: // SEQUENCE
+      case 0x11: // SET
+        if (this.sub !== null) {
+          return '(' + this.sub.length + ' elem)'
+        } else {
+          return '(no elem)'
+        }
+      case 0x0C: // UTF8String
+        return stringCut(this.stream.parseStringUTF(content, content + len), maxLength)
+      case 0x12: // NumericString
+      case 0x13: // PrintableString
+      case 0x14: // TeletexString
+      case 0x15: // VideotexString
+      case 0x16: // IA5String
+        // case 0x19: // GraphicString
+      case 0x1A: // VisibleString
+        // case 0x1B: // GeneralString
+        // case 0x1C: // UniversalString
+        return stringCut(this.stream.parseStringISO(content, content + len), maxLength)
+      case 0x1E: // BMPString
+        return stringCut(this.stream.parseStringBMP(content, content + len), maxLength)
+      case 0x17: // UTCTime
+      case 0x18: // GeneralizedTime
+        return this.stream.parseTime(content, content + len, (this.tag.tagNumber == 0x17))
       }
       return null
     }
@@ -1000,7 +1000,7 @@ and limitations under the License.
             d = (this[i] >> (p -= k)) & km
             if (p <= 0) {
               p += this.DB
-                --i
+              --i
             }
           }
           if (d > 0) {
@@ -1139,7 +1139,7 @@ and limitations under the License.
             d = (this[i] >> (p -= 8)) & 0xff
             if (p <= 0) {
               p += this.DB
-                --i
+              --i
             }
           }
           if ((d & 0x80) != 0) {
@@ -1374,11 +1374,11 @@ and limitations under the License.
         n = k
         while ((w & 1) == 0) {
           w >>= 1
-            --n
+          --n
         }
         if ((i -= n) < 0) {
           i += this.DB
-            --j
+          --j
         }
         if (is1) { // ret == 1, don't bother squaring or multiplying it
           g[w].copyTo(r)
@@ -1405,7 +1405,7 @@ and limitations under the License.
           r2 = t
           if (--i < 0) {
             i = this.DB - 1
-              --j
+            --j
           }
         }
       }
@@ -2105,7 +2105,7 @@ and limitations under the License.
     // (protected) this *= n, this >= 0, 1 < n < DV
     BigInteger.prototype.dMultiply = function (n) {
       this[this.t] = this.am(0, n - 1, this, 0, 0, this.t)
-        ++this.t
+      ++this.t
       this.clamp()
     }
     // BigInteger.prototype.dAddOffset = bnpDAddOffset;
@@ -3079,7 +3079,7 @@ and limitations under the License.
         ret += String.fromCharCode(c)
       } else if ((c > 191) && (c < 224)) {
         ret += String.fromCharCode(((c & 31) << 6) | (b[i + 1] & 63))
-          ++i
+        ++i
       } else {
         ret += String.fromCharCode(((c & 15) << 12) | ((b[i + 1] & 63) << 6) | (b[i + 2] & 63))
         i += 2
