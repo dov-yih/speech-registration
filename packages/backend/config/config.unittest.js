@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 // change to your own sequelize configurations for test
 // exports.sequelize = {

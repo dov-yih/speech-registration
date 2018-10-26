@@ -74,3 +74,6 @@ typings/
 
 # FuseBox cache
 .fusebox/
+
+packages/frontend/build/
+packages/backend/run/
