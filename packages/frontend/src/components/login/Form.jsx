@@ -8,14 +8,16 @@ import {
   Modal,
 } from 'react-bootstrap'
 import withStyles from 'react-jss'
-
+import { Redirect} from 'react-router-dom'
 import JSEncrypt from '@/lib/jsencrypt.min.js'
 import { loginReq } from '@/pages/login/request'
 
 import { PUBLIC_KEY} from '../../keys.json'
 import { SCHOOL_NUMBER } from '../../global'
+
 const { Feedback } = FormControl
 const { Dialog, Header,Title, Body,Footer } = Modal
+
 const styles = {
   formControl: {
     height: '40px !important',
@@ -37,20 +39,22 @@ class LoginForm extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      username: '',
+      sNo: '',
       password: '',
-      isShow: false
+      isShow: false,
+      errMsg: '网络错误,请稍后重试',
+      canJump: false
     }
   }
   handleClose = ()=> {
     this.setState({isShow: false})
   }
-  validateUsername() {
-    const {username} = this.state
-    if(!username) {
+  validatesNo() {
+    const {sNo} = this.state
+    if(!sNo) {
       return null
     }
-    if (SCHOOL_NUMBER.test(username)) {
+    if (SCHOOL_NUMBER.test(sNo)) {
       return 'success'
     }
     return 'error'
@@ -68,16 +72,23 @@ class LoginForm extends Component {
   }
   submit = async () => {
     if( this.validatePassword() !== 'success'
-      || this.validateUsername() !== 'success' ){
+      || this.validatesNo() !== 'success' ){
       return false
     }
-    const { username, password } = this.state
+    const { sNo, password } = this.state
     let sign = new JSEncrypt()
     sign.setPublicKey(PUBLIC_KEY)
-    let encrypted = sign.encrypt(JSON.stringify({ username, password }))
-    console.log(encrypted)
+    let encryptedPasswd = sign.encrypt(password)
     try{
-      let resp = await loginReq(encrypted)
+      let resp = await loginReq({
+        sNo: sNo,
+        password: encryptedPasswd
+      })
+      if(resp.data.error) {
+        return this.setState({isShow: true,errMsg: resp.data.error})
+      }
+      // jump index
+      this.setState({canJump: true, sNo})
     } catch(e) {
       // console.log(e)
       this.setState({isShow: true})
@@ -86,22 +97,22 @@ class LoginForm extends Component {
   }
   render() {
     const { classes } = this.props
-    const {username, password, isShow} = this.state
+    const {sNo, password, isShow, canJump} = this.state
     return (
       <div>
         <h2>Welcome Comrade</h2>
         <FormGroup
-          validationState={this.validateUsername()}
-          controlId="username">
+          validationState={this.validatesNo()}
+          controlId="sNo">
           {/* BUG
             @see https://github.com/react-bootstrap/react-bootstrap/issues/2418#issuecomment-395996382
             @see https://github.com/react-bootstrap/react-bootstrap/issues/2226 */}
           <FormControl
             type="text"
-            value={username}
+            value={sNo}
             className={classes.formControl}
             placeholder="Your School Number"
-            onChange={e => this.setState({ username: e.target.value })}
+            onChange={e => this.setState({ sNo: e.target.value })}
           />
           <Feedback />
         </FormGroup>
@@ -120,7 +131,9 @@ class LoginForm extends Component {
         <Button bsStyle="primary" onClick={this.submit} block>
           Login
         </Button>
-        <Modal show={isShow} className={classes.errorModal}>
+        { canJump
+        ? <Redirect to={`/${sNo}`} />
+        : <Modal show={isShow} className={classes.errorModal}>
           <Header>
             <Title bsClass="text-info">
                 Network Error
@@ -134,7 +147,7 @@ class LoginForm extends Component {
           <Footer>
             <Button onClick={this.handleClose}>Close</Button>
           </Footer>
-        </Modal>
+        </Modal>}
       </div>
     )
   }

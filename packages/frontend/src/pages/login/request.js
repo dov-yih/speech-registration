@@ -1,7 +1,7 @@
 import axios from 'axios'
 
-export function loginReq(encryptedStr) {
-  return axios.post('/login', {data: encryptedStr}, {
+export function loginReq(data) {
+  return axios.post('/login', {data}, {
     baseURL: 'http://localhost:7001'
   })
 }

@@ -13,7 +13,6 @@ class LoginService extends Service {
     })
   }
 
-
   /**
    * 验证token的合法性
    * @param {String} token

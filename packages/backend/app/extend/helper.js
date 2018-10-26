@@ -1,15 +1,16 @@
 
 const {encrypt, decrypt} = require('../../utils/rsa.js')
-// 获取 Token
+
+// Copy from https://segmentfault.com/a/1190000014952764#articleHeader8
+
 exports.getAccessToken = ctx => {
   let bearerToken = ctx.request.header.authorization
   return bearerToken && bearerToken.replace('Bearer ', '')
 }
 
-// 校验 Token
 exports.verifyToken = async (ctx, userId) => {
   let token = this.getAccessToken(ctx)
-  let verifyResult = await ctx.service.user.verifyToken(token)
+  let verifyResult = await ctx.service.login.verifyToken(token)
   if (!verifyResult.verify) {
     ctx.helper.error(ctx, 401, verifyResult.message)
     return false
@@ -21,7 +22,6 @@ exports.verifyToken = async (ctx, userId) => {
   return true
 }
 
-// 处理成功响应
 exports.success = (ctx, result = null, message = '请求成功', status = 200) => {
   ctx.body = {
     code: 0,
@@ -31,7 +31,6 @@ exports.success = (ctx, result = null, message = '请求成功', status = 200) =
   ctx.status = status
 }
 
-// 处理失败响应
 exports.error = (ctx, code, message) => {
   ctx.body = {
     code: code,
