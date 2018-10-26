@@ -12,6 +12,10 @@ import withStyles from 'react-jss'
 import JSEncrypt from '@/lib/jsencrypt.min.js'
 import { loginReq } from '@/pages/login/request'
 
+import { PUBLIC_KEY} from "../../keys.json"
+
+console.log(PUBLIC_KEY)
+
 const { Feedback } = FormControl
 const { Dialog, Header,Title, Body,Footer } = Modal
 const styles = {
@@ -27,18 +31,11 @@ const styles = {
   }
 }
 
-const PUBLIC_KEY = `-----BEGIN PUBLIC KEY-----
-MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCeY2GvSwNXIS3R+eK3HoyO6+up
-XolhWRQhokiW0DANe7xhfGnUZcaWqABoGDHWEObpJCm9hvAs4rP0XEvZsWyuobI+
-oJnvvkZgKxVxKoJbqI9tKabvzOcbNv0zeJQiRtUtuQ9xBe4gikmx4Vpaq5DUoJhK
-HaP114KP/KbXJEqjpwIDAQAB
------END PUBLIC KEY-----`;
-
 export default
 @withStyles(styles)
 class LoginForm extends Component {
-  static propTypes = {
-  }
+  static propTypes = { }
+
   constructor(props) {
     super(props)
     this.state = {
@@ -81,8 +78,9 @@ class LoginForm extends Component {
     }
     const { username, password } = this.state
     let sign = new JSEncrypt()
-    sign.setPublicKey(PUBLIC_KEY)
-    let encrypted = sign.encrypt({ username, password })
+    sign.setPublicKey(PUBLIC_KEY);
+    let encrypted = sign.encrypt(JSON.stringify({ username, password }))
+    console.log(encrypted)
     try{
       let resp = await loginReq(encrypted)
     } catch(e) {
