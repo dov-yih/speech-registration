@@ -3,14 +3,26 @@ const {
 } = require('egg')
 const dateFormat = require('dateformat')
 
-class SpeechController extends Controller {
+class AdminSpeechController extends Controller {
   async index() {
     const {
       ctx
     } = this
-    const speeches = await ctx.model.Speech.findAll()
+  }
 
-    ctx.body = speeches.map(speech => {
+  async show() {
+    const {
+      ctx,
+      app
+    } = this
+    const {model} = app
+    // @see https://github.com/sequelize/sequelize/issues/2827
+    // @see https://github.com/sequelize/sequelize/issues/2827#issuecomment-69709220
+    // @see https://github.com/sequelize/sequelize/issues/2827#issuecomment-68712515
+    let selfSpeeches = await model.Speech.findAll({where: {
+      s_no: '17058511'
+    }})
+    return ctx.body = selfSpeeches.map(speech => {
       const {
         id,
         direction,
@@ -38,10 +50,7 @@ class SpeechController extends Controller {
         pre_knowledge,
       }
     })
-  }
-
-  async show() {
-
+    // ctx.body = selfSpeeches || {msg: 'test'}
   }
 }
-module.exports = SpeechController
+module.exports = AdminSpeechController

@@ -5,7 +5,6 @@ const {
 class UserController extends Controller {
   async index() {
 
-
   }
   async show() {
     const {

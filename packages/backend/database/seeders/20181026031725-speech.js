@@ -23,8 +23,9 @@ module.exports = {
       + '言，内置支持类型。它的解释器被称为JavaScript引擎，为浏览器的一部分，广泛用于客户端'
       + '的脚本语言，最早是在HTML（标准通用标记语言下的一个应用）网页上使用，用来给HTML网页增'
       + '加动态功能。',
-      speaker_name: '张家辉',
-      speech_date: '2018-10-28'
+      speaker_name: '牛德华',
+      speech_date: '2018-10-28',
+      s_no: '17058511',
     }, {
       subject: 'PHP web开发',
       introduce: 'PHP web开发实战',
@@ -36,7 +37,8 @@ module.exports = {
       pre_knowledge: 'PHP（外文名:PHP: Hypertext Preprocessor，中文名：“超文本预处理器”）'
       + '是一种通用开源脚本语言。',
       speaker_name: '牛德华',
-      speech_date: '2018-10-28'
+      speech_date: '2018-10-28',
+      s_no: '17058511',
     }, {
       subject: 'HTML,CSS精讲',
       introduce: 'HTML,CSS入门详细介绍',
@@ -48,7 +50,8 @@ module.exports = {
       pre_knowledge: '层叠样式表(英文全称：Cascading Style Sheets)是一种用来表现HTML（标'
       + '准通用标记语言的一个应用）或XML（标准通用标记语言的一个子集）等文件样式的计算机语言。',
       speaker_name: '张雪有',
-      speech_date: '2018-10-28'
+      speech_date: '2018-10-28',
+      s_no: '16058522',
     }, {
       subject: 'mpvue小程序开发',
       introduce: '基于 mpvue 的小程序开发',
@@ -61,7 +64,8 @@ module.exports = {
       + '框架基于 Vue.js 核心，mpvue 修改了 Vue.js 的 runtime 和 compiler 实现，使其可以'
       + '运行在小程序环境中，从而为小程序开发引入了整套 Vue.js 开发体验。',
       speaker_name: '李明',
-      speech_date: '2018-10-28'
+      speech_date: '2018-10-28',
+      s_no: '16058533',
     }, {
       subject: 'Docker自动化部署',
       introduce: '利用 Docker 实行自动化部署',
@@ -74,7 +78,8 @@ module.exports = {
       + '一个可移植的容器中，然后发布到任何流行的 Linux 机器上，也可以实现虚拟化。容器是完全使用'
       + '沙箱机制，相互之间不会有任何接口。',
       speaker_name: '郭负城',
-      speech_date: '2018-10-28'
+      speech_date: '2018-10-28',
+      s_no: '17058544',
     }], {})
   },
 

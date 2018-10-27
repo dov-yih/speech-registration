@@ -13,3 +13,8 @@ exports.jwt = {
   enable: true,
   package: 'egg-jwt'
 }
+
+exports.routerPlus = {
+  enable: true,
+  package: 'egg-router-plus',
+}
