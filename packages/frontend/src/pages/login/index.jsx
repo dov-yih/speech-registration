@@ -6,18 +6,24 @@ const styles = {
   loginContainer: {
     backgroundColor: '#f6f6f6',
     width: '100%',
+    height: '100%',
     position: 'absolute',
     top: '0px',
     bottom: '0px',
     left: '0px',
+    right: '0px'
+    // display: 'flex',
+    // justifyContent: 'center',
+    // alignItems: 'center'
   },
   loginBox: {
-    position: 'relative',
-    margin: 'auto auto',
+    position: 'absolute',
+    margin: '-150px 0 0 -150px',
     // Copy from https://eacy-mock.com/login
     width: '300px',
     height: '300px',
-    top: '20%',
+    top: '50%',
+    left: '50%',
     // Copy from https://github.com/login
     backgroundColor: '#fff',
     padding: '20px',
