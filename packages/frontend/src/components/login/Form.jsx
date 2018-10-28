@@ -65,7 +65,7 @@ class LoginForm extends Component {
     if(!password) {
       return null
     }
-    if ( /[0-9a-zA-Z\!\@\#\$\%\^\&\*\_\=\+]{6}/.test(password)) {
+    if (/^[0-9a-zA-Z!@#$%^&*_=+]{6,20}$/.test(password)) {
       return 'success'
     }
     return 'error'
