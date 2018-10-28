@@ -132,22 +132,22 @@ class LoginForm extends Component {
           Login
         </Button>
         { canJump
-        ? <Redirect to={`/${sNo}`} />
-        : <Modal show={isShow} className={classes.errorModal}>
-          <Header>
-            <Title bsClass="text-info">
+          ? <Redirect to={`/${sNo}`} />
+          : <Modal show={isShow} className={classes.errorModal}>
+            <Header>
+              <Title bsClass="text-info">
                 Network Error
-            </Title>
-          </Header>
-          <Body >
-            <Alert bsClass="text-danger text-center">
+              </Title>
+            </Header>
+            <Body >
+              <Alert bsClass="text-danger text-center">
                 Place reflesh pages.
-            </Alert>
-          </Body>
-          <Footer>
-            <Button onClick={this.handleClose}>Close</Button>
-          </Footer>
-        </Modal>}
+              </Alert>
+            </Body>
+            <Footer>
+              <Button onClick={this.handleClose}>Close</Button>
+            </Footer>
+          </Modal>}
       </div>
     )
   }

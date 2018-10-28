@@ -18,7 +18,7 @@ export default class Home extends Component {
 
   static propTypes = {  }
   async componentDidMount() {
-    let resp = await getSpeeches();
+    let resp = await getSpeeches()
     const speeches = resp.data
     this.setState({ speeches})
   }

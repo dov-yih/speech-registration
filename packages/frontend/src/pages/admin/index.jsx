@@ -35,7 +35,7 @@ export default class Admin extends Component {
                   path={url + path}
                   exact={exact}
                   component={component}
-              />
+                />
             )
           }
         </Col>

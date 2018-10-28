@@ -19,7 +19,7 @@ export default class Index extends Component {
   render() {
     const {speeches} = this.state
     return <div>
-        <SpeechList dataSet={speeches} />
-      </div>;
+      <SpeechList dataSet={speeches} />
+    </div>
   }
 }

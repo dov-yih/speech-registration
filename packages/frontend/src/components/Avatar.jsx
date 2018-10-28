@@ -15,7 +15,7 @@ const styles = {
   },
   avatar: {
     height: '64px',
-     width: '64px'
+    width: '64px'
   }
 }
 export default
