@@ -11,19 +11,17 @@ const styles = {
     top: '0px',
     bottom: '0px',
     left: '0px',
-    right: '0px'
-    // display: 'flex',
-    // justifyContent: 'center',
-    // alignItems: 'center'
+    right: '0px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   loginBox: {
-    position: 'absolute',
-    margin: '-150px 0 0 -150px',
+    position: 'relative',
+    margin: 'auto',
     // Copy from https://eacy-mock.com/login
     width: '300px',
     height: '300px',
-    top: '50%',
-    left: '50%',
     // Copy from https://github.com/login
     backgroundColor: '#fff',
     padding: '20px',
