@@ -9,34 +9,14 @@ class SpeechController extends Controller {
       ctx
     } = this
     const speeches = await ctx.model.Speech.findAll()
-
     ctx.body = speeches.map(speech => {
       const {
-        id,
-        direction,
-        speaker_name,
-        isPPT,
-        url,
-        subject,
-        introduce,
-        pre_knowledge,
-        tags,
+        // ignore this two
         created_at,
-        speech_date,
-      } = speech
-      return {
-        tags: tags.split(','),
-        speech_date: dateFormat(speech_date, 'fullDate'),
-        created_date: dateFormat(created_at, 'fullDate'),
-        id,
-        direction,
-        speaker_name,
-        isPPT,
-        url,
-        subject,
-        introduce,
-        pre_knowledge,
-      }
+        updated_at,
+        ...rest
+      } = speech.toJSON()
+      return rest
     })
   }
 

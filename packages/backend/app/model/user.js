@@ -9,7 +9,7 @@ module.exports = (app) => {
     name: STRING,
     s_no: STRING,
     password: STRING,
-    class: INTEGER,
+    klass: INTEGER,
     avatar: TEXT
   }, {
     underscored: true
@@ -19,7 +19,6 @@ module.exports = (app) => {
     User.hasMany(Speech, {
       foreignKey: 's_no'
     })
-    // associations can be defined here
   }
   return User
 }
