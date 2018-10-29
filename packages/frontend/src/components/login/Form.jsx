@@ -10,7 +10,8 @@ import {
 import withStyles from 'react-jss'
 import { Redirect} from 'react-router-dom'
 import JSEncrypt from '@/lib/jsencrypt.min.js'
-import { loginReq } from '@/pages/login/request'
+// import { loginReq } from '@/pages/login/request'
+import Login from '@/network/login'
 
 import { PUBLIC_KEY} from '../../keys.json'
 import { SCHOOL_NUMBER } from '../../global'
@@ -80,10 +81,7 @@ class LoginForm extends Component {
     sign.setPublicKey(PUBLIC_KEY)
     let encryptedPasswd = sign.encrypt(password)
     try{
-      let resp = await loginReq({
-        sNo: sNo,
-        password: encryptedPasswd
-      })
+      let resp = await Login.post({ sNo: sNo, password: encryptedPasswd })
       if(resp.data.error) {
         return this.setState({isShow: true,errMsg: resp.data.error})
       }

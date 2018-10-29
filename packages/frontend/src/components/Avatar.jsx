@@ -7,7 +7,8 @@ import {
 } from 'react-bootstrap'
 import withStyles from 'react-jss'
 
-import { getUser } from '@/pages/admin/userReq'
+// import { getUser } from '@/pages/admin/userReq'
+import User from '@/network/user'
 
 const styles = {
   container: {
@@ -35,8 +36,8 @@ class Sidebar extends Component {
   }
 
   async componentDidMount() {
-    let resp = await getUser('160585222')
-    this.setState({ currentUser: resp.data })
+    let data = await User.getById("160585222");
+    this.setState({ currentUser: data })
   }
   render() {
     const { currentUser: { name, s_no, avatar } } = this.state

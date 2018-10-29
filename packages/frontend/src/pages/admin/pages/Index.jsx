@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import SpeechList from '@/components/speech/List'
 
-import {getSpeeches} from './request'
+import AdminSpeech from '@/network/adminSpeech'
 export default class Index extends Component {
   static propTypes = {
   }
@@ -13,8 +13,8 @@ export default class Index extends Component {
     }
   }
   async componentDidMount() {
-    let resp = await getSpeeches('17058511')
-    this.setState({speeches: resp.data})
+    let data = await AdminSpeech.getById('16058522');
+    this.setState({speeches: data})
   }
   render() {
     const {speeches} = this.state
