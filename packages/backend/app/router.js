@@ -16,5 +16,5 @@ module.exports = app => {
     await next()
     console.log('He/She left /admin')
   })
-  admitRouter.get('/speech', adminSpeech.show)
+  admitRouter.resources('/speeches', adminSpeech)
 }
