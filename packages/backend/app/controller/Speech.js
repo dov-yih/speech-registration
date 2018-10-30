@@ -2,6 +2,7 @@ const {
   Controller
 } = require('egg')
 const dateFormat = require('dateformat')
+const UserSerializer = require('../serializer/speechSerializer')
 
 class SpeechController extends Controller {
   async index() {
@@ -9,15 +10,9 @@ class SpeechController extends Controller {
       ctx
     } = this
     const speeches = await ctx.model.Speech.findAll()
-    ctx.body = speeches.map(speech => {
-      const {
-        // ignore this two
-        created_at,
-        updated_at,
-        ...rest
-      } = speech.toJSON()
-      return rest
-    })
+    return ctx.body = UserSerializer.serialize(
+      speeches.map(speech => speech.toJSON())
+    )
   }
 
   async show() {

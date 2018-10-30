@@ -18,7 +18,8 @@ export default class Home extends Component {
 
   static propTypes = {  }
   async componentDidMount() {
-    let data = await Speech.get()
+    let {data} = await Speech.get()
+    console.log(data)
     this.setState({ speeches: data })
   }
   render() {

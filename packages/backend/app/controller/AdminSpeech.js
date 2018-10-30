@@ -2,6 +2,7 @@ const {
   Controller
 } = require('egg')
 const dateFormat = require('dateformat')
+const UserSerializer = require('../serializer/speechSerializer')
 
 class AdminSpeechController extends Controller {
   async index() {
@@ -15,18 +16,23 @@ class AdminSpeechController extends Controller {
       ctx,
       app
     } = this
-    let {id} = ctx.params
-    const {model} = app
+    let {
+      id
+    } = ctx.params
+    const {
+      model
+    } = app
     // @see https://github.com/sequelize/sequelize/issues/2827
     // @see https://github.com/sequelize/sequelize/issues/2827#issuecomment-69709220
     // @see https://github.com/sequelize/sequelize/issues/2827#issuecomment-68712515
-    let selfSpeeches = await model.Speech.findAll({where: {
-      s_no: id
-    }})
-    return ctx.body = selfSpeeches.map(speech => {
-      const {created_at, updated_at, ...rest}= speech.toJSON()
-      return  rest
+    let selfSpeeches = await model.Speech.findAll({
+      where: {
+        s_no: id
+      }
     })
+    return ctx.body = UserSerializer.serialize(
+      selfSpeeches.map(speech => speech.toJSON())
+    )
     // ctx.body = selfSpeeches || {msg: 'test'}
   }
 }

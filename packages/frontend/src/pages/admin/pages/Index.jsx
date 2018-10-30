@@ -16,11 +16,12 @@ class Index extends Component {
   }
   async componentDidMount() {
     const {token} = this.props
-    let data = await AdminSpeech.getById(
+    let {data} = await AdminSpeech.getById(
       '16058522',
       {},
       { authorization: 'Bearer ' + token.value}
     )
+    console.log('admin index', data)
     this.setState({speeches: data})
   }
   render() {
