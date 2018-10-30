@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import SpeechList from '@/components/speech/List'
+import {connect} from 'react-redux'
 
+import SpeechList from '@/components/speech/List'
 import AdminSpeech from '@/network/adminSpeech'
-export default class Index extends Component {
+
+class Index extends Component {
   static propTypes = {
   }
   constructor(props) {
@@ -13,7 +15,12 @@ export default class Index extends Component {
     }
   }
   async componentDidMount() {
-    let data = await AdminSpeech.getById('16058522');
+    const {token} = this.props
+    let data = await AdminSpeech.getById(
+      '16058522',
+      {},
+      { authorization: 'Bearer ' + token.value}
+    )
     this.setState({speeches: data})
   }
   render() {
@@ -23,3 +30,7 @@ export default class Index extends Component {
     </div>
   }
 }
+export default connect(state=> {
+  const {token} = state
+  return {token}
+})(Index)

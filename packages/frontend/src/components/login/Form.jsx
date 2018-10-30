@@ -9,6 +9,9 @@ import {
 } from 'react-bootstrap'
 import withStyles from 'react-jss'
 import { Redirect} from 'react-router-dom'
+import {connect} from 'react-redux'
+import {newToken} from '@/redux/actions'
+
 import JSEncrypt from '@/lib/jsencrypt.min.js'
 // import { loginReq } from '@/pages/login/request'
 import Login from '@/network/login'
@@ -32,7 +35,6 @@ const styles = {
   }
 }
 
-export default
 @withStyles(styles)
 class LoginForm extends Component {
   static propTypes = { }
@@ -81,10 +83,11 @@ class LoginForm extends Component {
     sign.setPublicKey(PUBLIC_KEY)
     let encryptedPasswd = sign.encrypt(password)
     try{
-      let resp = await Login.post({ sNo: sNo, password: encryptedPasswd })
-      if(resp.data.error) {
-        return this.setState({isShow: true,errMsg: resp.data.error})
+      let data = await Login.post({ id: sNo, sNo: sNo, password: encryptedPasswd })
+      if(data.error) {
+        return this.setState({isShow: true,errMsg: data.error})
       }
+      let res = this.props.newToken(data.token)
       // jump index
       this.setState({canJump: true, sNo})
     } catch(e) {
@@ -150,3 +153,9 @@ class LoginForm extends Component {
     )
   }
 }
+
+
+export default connect(
+  null,
+  { newToken }
+)(LoginForm);

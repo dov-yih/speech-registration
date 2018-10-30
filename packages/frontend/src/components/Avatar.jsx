@@ -36,7 +36,7 @@ class Sidebar extends Component {
   }
 
   async componentDidMount() {
-    let data = await User.getById("160585222");
+    let data = await User.getById('160585222')
     this.setState({ currentUser: data })
   }
   render() {
