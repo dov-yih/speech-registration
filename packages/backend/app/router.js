@@ -12,9 +12,14 @@ module.exports = app => {
   router.post('getPublicKey', '/test', login.test)
 
   let admitRouter = router.namespace('/admin', async (ctx,next) => {
-    console.log('Somebody visit /admin')
-    await next()
-    console.log('He/She left /admin')
+    if(ctx.helper.verifyToken(ctx,'16058522')) {
+      await next()
+    }else {
+      return ctx.body = {
+        error: 'pleace login first',
+        redirect: '/login'
+      }
+    }
   })
   admitRouter.resources('/speeches', adminSpeech)
 }

@@ -6,7 +6,7 @@ class LoginController extends Controller {
   async index() {
     const {ctx,app} = this
     const {User} = app.model
-    const {sNo,password} = ctx.request.body
+    const {sNo,password} = ctx.request.body.data.attributes
     const decryptPasswd = ctx.helper.decrypt(
       password,
       app.config.keys.login.private

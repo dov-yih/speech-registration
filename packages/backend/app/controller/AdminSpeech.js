@@ -15,12 +15,13 @@ class AdminSpeechController extends Controller {
       ctx,
       app
     } = this
+    let {id} = ctx.params
     const {model} = app
     // @see https://github.com/sequelize/sequelize/issues/2827
     // @see https://github.com/sequelize/sequelize/issues/2827#issuecomment-69709220
     // @see https://github.com/sequelize/sequelize/issues/2827#issuecomment-68712515
     let selfSpeeches = await model.Speech.findAll({where: {
-      s_no: '17058511'
+      s_no: id
     }})
     return ctx.body = selfSpeeches.map(speech => {
       const {created_at, updated_at, ...rest}= speech.toJSON()
