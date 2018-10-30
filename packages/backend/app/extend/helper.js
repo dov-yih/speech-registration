@@ -1,6 +1,5 @@
-
 const {encrypt, decrypt} = require('../../utils/rsa.js')
-
+const JSONAPIError = require('jsonapi-serializer').Error
 // Copy from https://segmentfault.com/a/1190000014952764#articleHeader8
 
 exports.getAccessToken = ctx => {
@@ -31,11 +30,15 @@ exports.success = (ctx, result = null, message = '请求成功', status = 200) =
   ctx.status = status
 }
 
-exports.error = (ctx, code, message) => {
-  ctx.body = {
+exports.error = (ctx, code, detail) => {
+  ctx.body = new JSONAPIError({
     code: code,
-    message: message
-  }
+    title: 'Unexcept Error',
+    detail,
+    links: {
+      about: '/login'
+    }
+  })
   ctx.status = code
 }
 

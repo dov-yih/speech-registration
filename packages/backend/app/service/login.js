@@ -8,6 +8,7 @@ class LoginService extends Service {
    * @param {Object} data
    */
   createToken(data) {
+    console.log('+++++++++', this.app.config.jwt.secret)
     return this.app.jwt.sign(data, this.app.config.jwt.secret, {
       expiresIn: '12h'
     })
@@ -18,17 +19,11 @@ class LoginService extends Service {
    * @param {String} token
    */
   verifyToken(token) {
+    console.log('+++++++++', this.app.config.jwt.secret)
     return new Promise((resolve, reject) => {
       this.app.jwt.verify(token, this.app.config.jwt.secret, function (err, decoded) {
         let result = {}
         if (err) {
-          /*
-            err = {
-              name: 'TokenExpiredError',
-              message: 'jwt expired',
-              expiredAt: 1408621000
-            }
-          */
           result.verify = false
           result.message = err.message
         } else {
