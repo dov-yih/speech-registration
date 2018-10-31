@@ -33,7 +33,6 @@ class LoginController extends Controller {
       ctx.status = 401
       return
     }
-    // console.log(visitor)
     let userPasswd = ctx.helper.decrypt(
       visitor.password,
       app.config.keys.db.private
@@ -46,7 +45,7 @@ class LoginController extends Controller {
       ctx.status = 401
       return
     }
-    let token = ctx.service.login.createToken({id: '16058522'})
+    let token = ctx.service.login.createToken({id: sNo})
     ctx.body = {token}
   }
 }
