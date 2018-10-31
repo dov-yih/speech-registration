@@ -15,7 +15,6 @@ module.exports = app => {
   // Or
   // router.resources('user', '/admin/user', speech)
   router.post('getPublicKey', '/login', login.index)
-  router.post('getPublicKey', '/test', login.test)
 
   let admitRouter = router.namespace('/admin', async (ctx, next) => {
     if (ctx.helper.verifyToken(ctx, '16058522')) {
