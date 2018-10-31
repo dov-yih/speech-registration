@@ -1,7 +1,7 @@
 const {encrypt, decrypt} = require('../../utils/rsa.js')
-const JSONAPIError = require('jsonapi-serializer').Error
-// Copy from https://segmentfault.com/a/1190000014952764#articleHeader8
+const errorSerializer = require('../serializer/errorSerializer')
 
+// Copy from https://segmentfault.com/a/1190000014952764#articleHeader8
 exports.getAccessToken = ctx => {
   let bearerToken = ctx.request.header.authorization
   return bearerToken && bearerToken.replace('Bearer ', '')
@@ -21,17 +21,8 @@ exports.verifyToken = async (ctx, userId) => {
   return true
 }
 
-exports.success = (ctx, result = null, message = '请求成功', status = 200) => {
-  ctx.body = {
-    code: 0,
-    message: message,
-    data: result
-  }
-  ctx.status = status
-}
-
 exports.error = (ctx, code, detail) => {
-  ctx.body = new JSONAPIError({
+  ctx.body = errorSerializer({
     code: code,
     title: 'Unexcept Error',
     detail,

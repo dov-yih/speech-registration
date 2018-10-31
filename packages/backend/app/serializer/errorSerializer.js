@@ -1,5 +1,3 @@
-const {
-  Error
-} = require('jsonapi-serializer')
+const JSONAPIErro = require('jsonapi-serializer').Error
 
-module.exports = (...arrt) => new Error(arrt)
+module.exports = (...args) => new JSONAPIErro(args)

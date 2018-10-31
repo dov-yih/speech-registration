@@ -2,6 +2,7 @@ const {
   Controller
 } = require('egg')
 const speakerSerializer = require('../serializer/speakerSerializer')
+const errorSerializer = require('../serializer/errorSerializer')
 class UserController extends Controller {
   async index() {
 
@@ -14,11 +15,17 @@ class UserController extends Controller {
     const {User} = app.model
 
     let {id} = ctx.params
-    // id = '16058522'
     let user = await User.findOne({
       where: {s_no: id}
     })
-    const {s_no,name, avatar} = user
+    if(!user) {
+      ctx.body = errorSerializer({
+        status: '401',
+        title: 'User Not Exist',
+        detail: 'Place Check You Had Login!'
+      })
+      return
+    }
     ctx.body = speakerSerializer.serialize(user.toJSON())
   }
 }
