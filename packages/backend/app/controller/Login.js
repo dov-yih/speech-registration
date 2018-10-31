@@ -46,17 +46,8 @@ class LoginController extends Controller {
       ctx.status = 401
       return
     }
-    let token = ctx.service.login.createToken({id: '16058525'})
+    let token = ctx.service.login.createToken({id: '16058522'})
     ctx.body = {token}
-  }
-  async test() {
-    const {ctx,app} = this
-    let isVerify = await ctx.helper.verifyToken(ctx, '16058525')
-    ctx.body = {
-      msg: 'test',
-      // token,
-      isVerify
-    }
   }
 }
 module.exports = LoginController
