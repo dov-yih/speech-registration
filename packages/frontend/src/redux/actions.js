@@ -1,4 +1,4 @@
-import { SIGN_OUT, NEW_TOKEN} from "./actionTypes";
+import { SIGN_OUT, NEW_TOKEN,ADD_USER,ADD_SNO} from "./actionTypes";
 
 let Token = ''
 export const newToken = token => ({
@@ -8,8 +8,28 @@ export const newToken = token => ({
   }
 })
 
-export const isLogin = () => {
-  console.log(Token)
+export const signOut = () => {
   return {
-  type: SIGNOUT
+  type: SIGN_OUT
 }}
+
+export const addUser = (sNo = '',name='', avatar='') => {
+  console.log(sNo)
+  return {
+    type: ADD_USER,
+    payload: {
+      sNo,
+      name,
+      avatar
+    }
+  }
+}
+
+export const addSNo = (sNo = '') => {
+  return {
+    type: ADD_SNO,
+    payload: {
+      sNo,
+    }
+  }
+}

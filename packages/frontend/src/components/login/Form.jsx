@@ -10,7 +10,7 @@ import {
 import withStyles from 'react-jss'
 import { Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {newToken} from '@/redux/actions'
+import {newToken, addSNo} from '@/redux/actions'
 
 import JSEncrypt from '@/lib/jsencrypt.min.js'
 // import { loginReq } from '@/pages/login/request'
@@ -20,7 +20,7 @@ import { PUBLIC_KEY} from '../../keys.json'
 import { SCHOOL_NUMBER } from '../../global'
 
 const { Feedback } = FormControl
-const { Dialog, Header,Title, Body,Footer } = Modal
+const {Header,Title, Body,Footer } = Modal
 
 const styles = {
   formControl: {
@@ -87,7 +87,9 @@ class LoginForm extends Component {
       if(data.error) {
         return this.setState({isShow: true,errMsg: data.error})
       }
-      let res = this.props.newToken(data.token)
+      const { newToken, addSNo } = this.props
+      newToken(data.token)
+      addSNo(sNo);
       // jump index
       this.setState({canJump: true, sNo})
     } catch(e) {
@@ -157,5 +159,5 @@ class LoginForm extends Component {
 
 export default connect(
   null,
-  { newToken }
+  { newToken,addSNo }
 )(LoginForm);
