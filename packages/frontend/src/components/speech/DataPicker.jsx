@@ -35,7 +35,9 @@ export default class DataPicker extends Component {
     return (
       <div>
         <label>演讲日期:</label>
-        <Picker selected={date}
+        <Picker
+          className="form-control"
+          selected={date}
           onWeekSelect={this.handleWeekSelect}
           showWeekNumbers
           dateFormat="YYYY-MM-DD"

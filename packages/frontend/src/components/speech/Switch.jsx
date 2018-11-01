@@ -28,6 +28,7 @@ export default class Switch extends Component {
           offColor="info"
           labelText="参考"
           defaultValue={false}
+          disabled
           onChange={onSwitch}
         />
         <FormGroup style={{ margin: '10px 0 0 0'}}>

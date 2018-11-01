@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { FormGroup, FormControl, ControlLabel } from 'react-bootstrap'
 import Select from 'rc-select'
 import orderBy from 'lodash/orderBy'
 import Tag from '@/network/tag'
