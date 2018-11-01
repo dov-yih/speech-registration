@@ -1,13 +1,5 @@
-import Base from './base'
+import Admin from './admin'
 
-export default class Speech extends Base {
-  static prefix = 'admin'
-  // static config = {
-  //   params: {
-  //     msg: 'test'
-  //   },
-  // }
-  static headers = {
-    'X-Requested-With': 'Axios'
-  }
+export default class Speech extends Admin {
+
 }
