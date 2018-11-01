@@ -42,7 +42,7 @@ class Avatar extends Component {
         this.setState({ currentUser:  data })
         // FIXME s_no will been changed by the data which backend feedback
         const {s_no,name, avatar} =  data
-        this.props.addUser(s_no, name, avatar);
+        this.props.addUser(s_no, name, avatar)
       } catch (error) {
         console.log(error)
       }
@@ -50,8 +50,6 @@ class Avatar extends Component {
     // not login
   }
   render() {
-    // const { currentUser: { name, Sno, avatar } } = this.state
-    console.log('render props', this.props)
     const {classes, user: {name, sNo, avatar} } = this.props
     return (
       <div className={classes.container}>
@@ -65,4 +63,4 @@ class Avatar extends Component {
 export default connect(
   store => {return {user: store.user }},
   {addUser}
-)(Avatar);
+)(Avatar)

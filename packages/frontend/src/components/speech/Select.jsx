@@ -1,18 +1,17 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import {FormGroup, FormControl, ControlLabel} from 'react-bootstrap'
+import { FormGroup, FormControl, ControlLabel } from 'react-bootstrap'
 import orderBy from 'lodash/orderBy'
-import Tag from '@/network/tag'
 import Direction from '@/network/direction'
 
 export default class Select extends Component {
   static propTypes = {
     onChange: PropTypes.func.isRequired,
     label: PropTypes.string.isRequired,
-    type: PropTypes.string
+    type: PropTypes.string.isRequired,
   }
   static defaultProps = {
-    type: 'tag'
+    type: 'direction'
   }
   constructor(props) {
     super(props)
@@ -21,19 +20,13 @@ export default class Select extends Component {
     }
   }
   async componentDidMount() {
-    const {type} = this.props
-    let data
-    if(type === 'tag') {
-      data = await Tag.get()
-    } else {
-      data = await Direction.get()
-    }
-    let dataSet = orderBy(data.data,['count'], ['desc'])
-    this.setState({dataSet})
+    let data = await Direction.get()
+    let dataSet = orderBy(data.data, ['count'], ['desc'])
+    this.setState({ dataSet })
   }
   render() {
-    const {onChange, type,label} = this.props
-    const {dataSet} = this.state
+    const { onChange, type, label } = this.props
+    const { dataSet } = this.state
     return <div>
       <FormGroup>
         <ControlLabel>{label}:</ControlLabel>

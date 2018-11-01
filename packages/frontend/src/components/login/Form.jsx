@@ -17,7 +17,7 @@ import JSEncrypt from '@/lib/jsencrypt.min.js'
 import Login from '@/network/login'
 
 import { PUBLIC_KEY} from '../../keys.json'
-import { SCHOOL_NUMBER } from '../../global'
+import { SCHOOL_NUMBER } from '@/global'
 
 const { Feedback } = FormControl
 const {Header,Title, Body,Footer } = Modal
@@ -89,7 +89,7 @@ class LoginForm extends Component {
       }
       const { newToken, addSNo } = this.props
       newToken(data.token)
-      addSNo(sNo);
+      addSNo(sNo)
       // jump index
       this.setState({canJump: true, sNo})
     } catch(e) {
@@ -160,4 +160,4 @@ class LoginForm extends Component {
 export default connect(
   null,
   { newToken,addSNo }
-)(LoginForm);
+)(LoginForm)

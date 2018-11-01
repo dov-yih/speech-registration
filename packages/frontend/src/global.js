@@ -6,3 +6,5 @@
  * @export SCHOOL_NUMBER
  */
 export const SCHOOL_NUMBER = /^[12][0-9]{7,7}$/
+
+export const TERM_START_DATE = '2018-09-10'

@@ -6,6 +6,7 @@ import {
   Col,
   Button,
 } from 'react-bootstrap'
+import MultipleSelect from './MultipleSelect'
 import 'react-bootstrap-switch/dist/css/bootstrap3/react-bootstrap-switch.min.css'
 
 import Select from './Select'
@@ -61,7 +62,8 @@ export default class Form extends Component {
             <Select onChange={this.handleChange} label="方向" type="direction" />
           </Col>
           <Col md={6}>
-            <Select onChange={this.handleChange} label="标签" type="tag" />
+            <MultipleSelect onChange={(value, option) => this.handleChange('tags',value)}  label="标签" />
+            {/* <Select multiple  /> */}
           </Col>
         </Row>
 
