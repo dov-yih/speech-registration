@@ -9,7 +9,8 @@ class LoginService extends Service {
    */
   createToken(data) {
     return this.app.jwt.sign(data, this.app.config.jwt.secret, {
-      expiresIn: '12h'
+      //debug only
+      expiresIn: '500h'
     })
   }
 

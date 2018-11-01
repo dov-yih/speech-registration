@@ -11,14 +11,22 @@ exports.verifyToken = async (ctx, userId) => {
   let token = this.getAccessToken(ctx)
   let verifyResult = await ctx.service.login.verifyToken(token)
   if (!verifyResult.verify) {
-    ctx.helper.error(ctx, 401, verifyResult.message)
-    return false
+    // ctx.helper.error(ctx, 401, )
+    return {
+      status: false,
+      message: verifyResult.message
+    }
   }
   if (userId != verifyResult.message.id) {
-    ctx.helper.error(ctx, 401, '用户 ID 与 Token 不一致')
-    return false
+    return {
+      status: false,
+      message: '用户 ID 与 Token 不一致'
+    }
   }
-  return true
+  return {
+    status: true,
+    message: 'success'
+  }
 }
 
 exports.error = (ctx, code, detail) => {

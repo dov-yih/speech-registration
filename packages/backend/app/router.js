@@ -1,4 +1,3 @@
-const JSONAPIError = require('jsonapi-serializer').Error
 module.exports = app => {
   const {
     router,
@@ -15,20 +14,7 @@ module.exports = app => {
   // Or
   // router.resources('user', '/admin/user', speech)
   router.post('getPublicKey', '/login', login.index)
-
-  let admitRouter = router.namespace('/admin', async (ctx, next) => {
-    if (ctx.helper.verifyToken(ctx, '16058522')) {
-      await next()
-    } else {
-      return ctx.body = new JSONAPIError({
-        code: '401',
-        title: 'pleace login first',
-        detail: 'You should login before you visit this url',
-        links: {
-          about: '/login'
-        }
-      })
-    }
-  })
+  let auth = app.middleware.auth({prefix: '/admin'})
+  let admitRouter = router.namespace('/admin', auth)
   admitRouter.resources('/speeches', adminSpeech)
 }
