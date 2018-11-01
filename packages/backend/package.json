@@ -33,6 +33,7 @@
     "test": "./node_modules/.bin/egg-bin test",
     "cov": "./node_modules/.bin/egg-bin cov",
     "dev": "./node_modules/.bin/egg-bin dev",
+    "debug": "./node_modules/.bin/egg-bin debug",
     "ci": "npm run lint && NODE_ENV=test npx sequelize db:migrate && npm run cov"
   },
   "ci": {

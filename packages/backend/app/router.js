@@ -7,14 +7,17 @@ module.exports = app => {
     speech,
     login,
     user,
-    adminSpeech
+    adminSpeech,
+    tag,
+    direction,
   } = controller
   router.resources('speech', '/speeches', speech)
   router.resources('user', '/users', user)
-  // Or
-  // router.resources('user', '/admin/user', speech)
+
   router.post('getPublicKey', '/login', login.index)
   let auth = app.middleware.auth({prefix: '/admin'})
-  let admitRouter = router.namespace('/admin', auth)
-  admitRouter.resources('/speeches', adminSpeech)
+  let adminRouter = router.namespace('/admin', auth)
+  adminRouter.resources('/speeches', adminSpeech)
+  adminRouter.resources('/tags', tag)
+  adminRouter.resources('/directions', direction)
 }

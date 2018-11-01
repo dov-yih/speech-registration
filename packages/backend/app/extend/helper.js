@@ -7,7 +7,7 @@ exports.getAccessToken = ctx => {
   return bearerToken && bearerToken.replace('Bearer ', '')
 }
 
-exports.verifyToken = async (ctx, userId) => {
+exports.verifyToken = async (ctx) => {
   let token = this.getAccessToken(ctx)
   let verifyResult = await ctx.service.login.verifyToken(token)
   if (!verifyResult.verify) {
@@ -17,12 +17,13 @@ exports.verifyToken = async (ctx, userId) => {
       message: verifyResult.message
     }
   }
-  if (userId != verifyResult.message.id) {
-    return {
-      status: false,
-      message: '用户 ID 与 Token 不一致'
-    }
-  }
+  // need userId? where the userId came from?
+  // if (userId != verifyResult.message.id) {
+  //   return {
+  //     status: false,
+  //     message: '用户 ID 与 Token 不一致'
+  //   }
+  // }
   return {
     status: true,
     message: 'success'
