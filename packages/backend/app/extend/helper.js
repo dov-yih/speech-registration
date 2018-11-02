@@ -18,7 +18,7 @@ exports.verifyToken = async (ctx) => {
     }
   }
   // mount current user id
-  ctx.currUserId = verifyResult.message.id
+  ctx.currUserSNo = verifyResult.message.id
 
   // need to equal userId? where the userId came from?
   // if (userId != verifyResult.message.id) {

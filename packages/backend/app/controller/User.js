@@ -8,10 +8,7 @@ class UserController extends Controller {
 
   }
   async show() {
-    const {
-      ctx,
-      app
-    } = this
+    const { ctx, app } = this
     const {User} = app.model
 
     let {id} = ctx.params
@@ -24,6 +21,7 @@ class UserController extends Controller {
         title: 'User Not Exist',
         detail: 'Place Check You Had Login!'
       })
+      ctx.status = 401
       return
     }
     ctx.body = speakerSerializer.serialize(user.toJSON())

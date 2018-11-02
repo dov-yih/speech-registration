@@ -1,5 +1,3 @@
 import Base from './base'
 
-export default class Speech extends Base {
-
-}
+export default class Speech extends Base { }

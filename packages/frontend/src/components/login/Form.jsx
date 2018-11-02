@@ -16,7 +16,7 @@ import JSEncrypt from '@/lib/jsencrypt.min.js'
 // import { loginReq } from '@/pages/login/request'
 import Login from '@/network/login'
 
-import { PUBLIC_KEY} from '../../keys.json'
+import { PUBLIC_KEY} from '@/keys.json'
 import { SCHOOL_NUMBER } from '@/global'
 
 const { Feedback } = FormControl

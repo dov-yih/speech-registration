@@ -1,12 +1,11 @@
-const {
-  Controller
-} = require('egg')
-
+const { Controller } = require('egg')
+const deserialize = require('../serializer/deserializer')
 class LoginController extends Controller {
   async index() {
     const {ctx,app} = this
     const {User} = app.model
-    const {sNo,password} = ctx.request.body.data.attributes
+    const {s_no,password} = await deserialize(ctx.request.body)
+    console.log(s_no, password)
     const decryptPasswd = ctx.helper.decrypt(
       password,
       app.config.keys.login.private
@@ -21,7 +20,7 @@ class LoginController extends Controller {
     }
     let visitor = await User.findOne({
       where: {
-        s_no: sNo,
+        s_no,
       },
       attributes: ['password']
     })
@@ -45,7 +44,7 @@ class LoginController extends Controller {
       ctx.status = 401
       return
     }
-    let token = ctx.service.login.createToken({id: sNo})
+    let token = ctx.service.login.createToken({id: s_no})
     ctx.body = {token}
   }
 }

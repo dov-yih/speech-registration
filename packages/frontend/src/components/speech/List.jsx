@@ -9,7 +9,6 @@ export default class List extends Component {
   }
   render() {
     let {dataSet} = this.props
-    console.log(typeof dataSet)
     dataSet = Array.from(dataSet)
     return (
       <PanelGroup id="speech-list">

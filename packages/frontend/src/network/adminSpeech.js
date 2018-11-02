@@ -1,5 +1,3 @@
 import Admin from './admin'
 
-export default class Speech extends Admin {
-
-}
+export default class Speech extends Admin { }

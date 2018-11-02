@@ -22,5 +22,4 @@ export default [{
   name: 'Setting',
   exact: true,
   component: Setting,
-}
-]
+}]

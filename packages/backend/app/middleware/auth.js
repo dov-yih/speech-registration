@@ -1,10 +1,8 @@
 const errorSerializer = require('../serializer/errorSerializer')
 
 module.exports = (options, app) => async function auth(ctx, next) {
-  console.log('auth options: ' ,options, ctx.params)
   let verification = await ctx.helper.verifyToken(ctx)
   if (verification.status) {
-    console.log(verification)
     await next()
   } else {
     ctx.status = 401
