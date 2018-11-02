@@ -3,12 +3,15 @@ import PropTypes from 'prop-types'
 import {
   Panel,
   Label,
+  Row,
+  Col
 } from 'react-bootstrap'
 import withStyles from 'react-jss'
 
 import Tags from './Tags'
 import Section from './Section'
-const { Heading, Title, Body, Footer, collapse} = Panel
+import Star from '../Star'
+const { Heading, Title, Body, Footer} = Panel
 const title = {
   display: 'inline-block'
 }
@@ -18,7 +21,7 @@ const styles = {
   },
   subTitile: {
     fontSize: '18px',
-    marginLeft: '20px',
+    margin: '0 20px',
     ...title
   },
   title: {
@@ -27,6 +30,11 @@ const styles = {
   }
 }
 
+const stateColors = {
+  preparatory: "info",
+  processional: "success",
+  expired: "warning"
+}
 /**
  *
  * @see React-Bootstrap ClassName Order https://github.com/react-bootstrap/react-bootstrap/issues/2675
@@ -37,6 +45,9 @@ export default
 @withStyles(styles)
 class Speech extends Component {
   static propTypes = {  }
+  // constructor(props) {
+  //   super(props)
+  // }
   handleChange(e){
     // TODO
   }
@@ -48,36 +59,48 @@ class Speech extends Component {
       introduce,
       direction,
       url,
-      isPPT,
+      is_ppt,
       speaker_name,
       tags,
       pre_knowledge,
       created_date,
       speech_date,
+      state,
     } = dataSrc
-    return (
-      <Panel className={classes.card} eventKey={id} bsStyle="info">
+
+    return <Panel className={classes.card} eventKey={id} bsStyle={stateColors[state]}>
         <Heading>
-          <Title className={classes.title} componentClass="h1">
-            {subject}
-          </Title>
-          <Title className={classes.subTitile} componentClass="h2">
-            {speaker_name}
-          </Title>
+          <Row>
+            <Col md={8}>
+              <Title className={classes.title} componentClass="h1">
+                {subject}
+              </Title>
+            </Col>
+            <Col md={2}>
+              <Title className={classes.subTitile} componentClass="h2">
+                {speaker_name}
+              </Title>
+            </Col>
+            <Col md={1}>
+              <Label bsStyle="primary">{direction}</Label>
+            </Col>
+            {/* // Next Version */}
+            {/* <Col md={2}>
+            <Star bsStyle={stateColors[state]}/>
+            </Col> */}
+          </Row>
         </Heading>
         <Body>
           <Tags dataSet={tags} />
           <Section label="介绍">{introduce}</Section>
           <Section label="预备知识">{pre_knowledge}</Section>
-          <Section label="演讲时间">
-            {speech_date}
-          </Section>
+          <Section label="演讲时间">{speech_date}</Section>
           <Section label="链接" url>
-            {url}
+            {" "}
+            {url}{" "}
           </Section>
         </Body>
-        <Footer>{created_date}</Footer>
-      </Panel>
-    )
+        <Footer>创建: {created_date}</Footer>
+      </Panel>;
   }
 }
