@@ -10,6 +10,7 @@ import {
 import Home from './home'
 import Login from './login'
 import Admin from './admin'
+import Archive from './archive'
 import NotFound from './error'
 import TopNavBar from '@/components/TopNavbar'
 import { SCHOOL_NUMBER} from '@/global'
@@ -39,18 +40,18 @@ export default class Pages extends Component {
  * @memberof Pages
  */
   render() {
-    return (
-      <div>
+    return <div>
         <TopNavBar />
         <Grid>
           <Switch>
             <Route path="/login" component={Login} />
+            <Route path="/archives" component={Archive} />
             <Route path={`/:school_number(${SCHOOL_NUMBER_REGEXP_STR})`} component={Admin} />
+            Archive
             <Route exact path="/" component={Home} />
-            <Route component={NotFound}/>
+            <Route component={NotFound} />
           </Switch>
         </Grid>
-      </div>
-    )
+      </div>;
   }
 }
