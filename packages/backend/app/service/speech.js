@@ -5,7 +5,6 @@ class SpeechService extends Service {
     const {ctx, app} = this
     const {Speech, User} = app.model
     const {currUserSNo} = ctx
-    console.log(currUserSNo)
     let currUser = await User.findOne({
       attributes: ['name'],
       where: {

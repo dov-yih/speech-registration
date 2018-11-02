@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import {
-  Grid,
   Row,
   Col,
 } from 'react-bootstrap'
@@ -19,7 +18,6 @@ export default class Home extends Component {
   static propTypes = {  }
   async componentDidMount() {
     let {data} = await Speech.get()
-    console.log(data)
     this.setState({ speeches: data })
   }
   render() {

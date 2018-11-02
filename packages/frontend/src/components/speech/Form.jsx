@@ -46,14 +46,14 @@ export default class Form extends Component {
     // this.setState({isPPT: state})
   }
   handelDateChange = (speech_date) => {
-    this.setState({ speech_date });
+    this.setState({ speech_date })
   }
   handleSubmit = async (e) => {
     let {tags,...rest} = this.state
-    tags = tags.join(",");
+    tags = tags.join(',')
     try{
       let data = await AdminSpeech.create({tags,...rest})
-      console.log(data)
+      // TODO JUMP to profile
     }catch(e) {
       console.log(e)
     }

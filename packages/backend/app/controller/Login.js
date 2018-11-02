@@ -5,7 +5,6 @@ class LoginController extends Controller {
     const {ctx,app} = this
     const {User} = app.model
     const {s_no,password} = await deserialize(ctx.request.body)
-    console.log(s_no, password)
     const decryptPasswd = ctx.helper.decrypt(
       password,
       app.config.keys.login.private

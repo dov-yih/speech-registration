@@ -14,7 +14,6 @@ export default class Index extends Component {
   }
   async componentDidMount() {
     let { data } = await AdminSpeech.getById('16058522')
-    console.log('admin index', data)
     this.setState({ speeches: data })
   }
   render() {

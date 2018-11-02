@@ -22,7 +22,7 @@ export default class MultipleSelect extends Component {
     }
   }
   async componentDidMount() {
-    let data = await Tag.get();
+    let data = await Tag.get()
     let dataSet = orderBy(data.data, ['count'], ['desc'])
     this.setState({ dataSet })
   }
