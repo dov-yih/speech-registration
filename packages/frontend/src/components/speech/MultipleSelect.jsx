@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import Select from 'rc-select'
+import Select, {Option} from 'rc-select'
 import orderBy from 'lodash/orderBy'
 import Tag from '@/network/tag'
 
@@ -41,7 +41,7 @@ export default class MultipleSelect extends Component {
           tokenSeparators={[' ', ',']}
         >
           {dataSet.map((data, idx) => (
-            <option key={idx} value={data.value}>{data.value}</option>
+            <Option key={data.value} value={data.value}>{data.value}</Option>
           ))}
         </Select>
       </div>

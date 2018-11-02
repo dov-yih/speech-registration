@@ -27,14 +27,14 @@ export default class Form extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      subject: 'test subjeck',
-      direction: 'frontend',
-      introduce: 'long long introduce',
-      pre_knowledge: 'pre pre pre',
-      tags: ['js','nodejs'],
+      subject: '',
+      direction: '',
+      introduce: '',
+      pre_knowledge: '',
+      tags: [],
       isPPT: false,
-      url: 'http://yidafu.org',
-      speech_date:  moment()
+      url: '',
+      speech_date:  moment(),
     }
   }
   handleChange = (key, value) => {
@@ -42,6 +42,7 @@ export default class Form extends Component {
   }
 
   handleSwitchChange = (elem, state) => {
+    // TODO
     // this.setState({isPPT: state})
   }
   handelDateChange = (speech_date) => {
