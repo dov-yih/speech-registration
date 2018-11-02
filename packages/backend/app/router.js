@@ -13,6 +13,7 @@ module.exports = app => {
   } = controller
   router.resources('speech', '/speeches', speech)
   router.resources('user', '/users', user)
+  router.get('/next', speech.next)
   router.get('archives', '/archives', speech.archive)
 
   router.post('getPublicKey', '/login', login.index)

@@ -1,5 +1,4 @@
 'use strict'
-const dateFormat = require('dateformat')
 const moment = require('moment')
 
 module.exports = app => {

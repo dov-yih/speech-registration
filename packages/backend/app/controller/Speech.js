@@ -9,13 +9,18 @@ class SpeechController extends Controller {
     )
   }
 
-  async show() {
-
-  }
   async archive() {
     const {ctx} = this
     ctx.body = UserSerializer.serialize(
       await ctx.service.speech.filter('expired')
+    )
+  }
+  async next() {
+    const {
+      ctx
+    } = this
+    ctx.body = UserSerializer.serialize(
+      await ctx.service.speech.filter('preparatory')
     )
   }
 }
