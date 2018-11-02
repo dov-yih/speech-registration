@@ -17,7 +17,7 @@ module.exports = {
       url: {
         type: Sequelize.STRING
       },
-      isPPT: {
+      is_ppt: {
         type: Sequelize.BOOLEAN
       },
       direction: {

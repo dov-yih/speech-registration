@@ -1,8 +1,11 @@
 const {
   Controller
 } = require('egg')
-const dateFormat = require('dateformat')
+const Sequelize = require('sequelize')
 const UserSerializer = require('../serializer/speechSerializer')
+const deserialize = require('../serializer/deserializer')
+
+const {Op} = Sequelize
 
 class AdminSpeechController extends Controller {
   async index() {
@@ -34,6 +37,16 @@ class AdminSpeechController extends Controller {
       selfSpeeches.map(speech => speech.toJSON())
     )
     // ctx.body = selfSpeeches || {msg: 'test'}
+  }
+  async create() {
+    const {ctx, app} = this
+    const {Label, User} = app.model
+    let data = ctx.request.body
+    let deserializedData = await deserialize(data)
+    let tags = deserializedData.tags.split(',')
+    Label.tagsIncrement(tags)
+    ctx.service.speech.createSpeech(deserializedData)
+    ctx.body = deserializedData
   }
 }
 module.exports = AdminSpeechController

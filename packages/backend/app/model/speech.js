@@ -12,7 +12,7 @@ module.exports = app => {
     subject: STRING,
     introduce: STRING,
     url: STRING,
-    isPPT: BOOLEAN,
+    is_ppt: BOOLEAN,
     direction: STRING,
     tags: {
       type: STRING,

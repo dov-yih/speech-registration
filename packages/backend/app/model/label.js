@@ -1,4 +1,6 @@
 'use strict'
+const Sequelize = require('sequelize')
+const Op = Sequelize.Op
 module.exports = (app) => {
   const {
     STRING,
@@ -15,6 +17,21 @@ module.exports = (app) => {
     return this.findAll({where: {
       type: 'tag'
     }})
+  }
+  Label.tagsIncrement = async function (tags) {
+    // FIXME HERE Has performance problom
+    let tagsInst = await this.findAll({
+      where: {
+        value: {
+          [Op.in]: tags
+        }
+      }
+    })
+
+    tagsInst.forEach(tagInst => {
+      tagInst.increment('count', {by:1})
+    })
+    return true
   }
   Label.directions = function() {
     return this.findAll({where: {

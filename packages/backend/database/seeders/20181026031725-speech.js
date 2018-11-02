@@ -5,7 +5,7 @@ module.exports = {
     // subject: DataTypes.STRING,
     //   introduce: DataTypes.STRING,
     //   url: DataTypes.STRING,
-    //   isPPT: DataTypes.BOOLEAN,
+    //   is_ppt: DataTypes.BOOLEAN,
     //   direction: DataTypes.STRING,
     //   tags: DataTypes.STRING,
     //   pre_knowledge: DataTypes.STRING,
@@ -15,7 +15,7 @@ module.exports = {
       subject: 'JavaScript 入门',
       introduce: 'JavaScript 的入门介绍',
       url: 'http://www.blog.com/posts/111',
-      isPPT: false,
+      is_ppt: false,
       // frontend backend AI Game Android IOS DL ML Algorithm
       direction: 'frontend',
       tags: 'javascript,ES6',
@@ -30,7 +30,7 @@ module.exports = {
       subject: 'PHP web开发',
       introduce: 'PHP web开发实战',
       url: 'http://www.blog.com/posts/222',
-      isPPT: false,
+      is_ppt: false,
       // frontend backend AI Game Android IOS DL ML Algorithm
       direction: 'backend',
       tags: 'php,mvc',
@@ -43,7 +43,7 @@ module.exports = {
       subject: 'HTML,CSS精讲',
       introduce: 'HTML,CSS入门详细介绍',
       url: '/path/to/html-css.pptx',
-      isPPT: true,
+      is_ppt: true,
       // frontend backend AI Game Android IOS DL ML Algorithm
       direction: 'frontend',
       tags: 'html5,css3',
@@ -56,7 +56,7 @@ module.exports = {
       subject: 'mpvue小程序开发',
       introduce: '基于 mpvue 的小程序开发',
       url: 'http://www.blog.com/posts/333',
-      isPPT: false,
+      is_ppt: false,
       // frontend backend wxapp AI Game Android IOS DL ML Algorithm
       direction: 'wxapp',
       tags: 'vue,wxapp,mpvue',
@@ -70,7 +70,7 @@ module.exports = {
       subject: 'Docker自动化部署',
       introduce: '利用 Docker 实行自动化部署',
       url: '/path/to/docker.pptx',
-      isPPT: true,
+      is_ppt: true,
       // frontend backend AI Game Android IOS DL ML Algorithm DevOps
       direction: 'frontend',
       tags: 'javascript,ES6',

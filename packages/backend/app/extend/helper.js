@@ -17,7 +17,10 @@ exports.verifyToken = async (ctx) => {
       message: verifyResult.message
     }
   }
-  // need userId? where the userId came from?
+  // mount current user id
+  ctx.currUserId = verifyResult.message.id
+
+  // need to equal userId? where the userId came from?
   // if (userId != verifyResult.message.id) {
   //   return {
   //     status: false,
