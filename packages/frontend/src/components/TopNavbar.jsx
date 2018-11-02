@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import {
-  NavLink
-} from 'react-router-dom'
+import {NavLink} from 'react-router-dom'
 import {
   Navbar,
   NavItem,
@@ -10,15 +8,19 @@ import {
   NavDropdown,
   MenuItem
 } from 'react-bootstrap'
-import {
-  LinkContainer
-} from 'react-router-bootstrap'
+import {LinkContainer} from 'react-router-bootstrap'
+import {connect} from 'react-redux'
+
 import IndexRouters from '@/routes/index'
+
 const { Header, Brand} = Navbar
-export default class TopNavbar extends Component {
+
+class TopNavbar extends Component {
   static propTypes = {  }
 
   render() {
+    const {isLogin} = this.props
+    console.log(isLogin)
     return (
     <Navbar>
       <Header>
@@ -29,11 +31,13 @@ export default class TopNavbar extends Component {
       <Nav pullRight>
         {
           IndexRouters.map( ({path,name},idx) => (
-            <LinkContainer key={idx} to={path}>
-              <NavItem eventKey={idx}>
-                  {name}
-              </NavItem>
-            </LinkContainer>
+            path === '/login' && isLogin
+            ? null
+            : <LinkContainer key={idx} to={path}>
+                <NavItem eventKey={idx}>
+                    {name}
+                </NavItem>
+              </LinkContainer>
           ))
         }
         <NavDropdown eventKey={3} title="我的" id="basic-nav-dropdown">
@@ -49,3 +53,7 @@ export default class TopNavbar extends Component {
     )
   }
 }
+
+export default connect(state => {
+  return { isLogin: state.token.isLogin }
+})(TopNavbar);
