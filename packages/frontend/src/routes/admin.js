@@ -1,7 +1,7 @@
-import Index from './pages/Index'
-import New from './pages/New'
-import Profile from './pages/Profile'
-import Setting from './pages/Setting'
+import Index from '@/pages/admin/pages/Index'
+import New from '@/pages/admin/pages/New'
+import Profile from '@/pages/admin/pages/Profile'
+import Setting from '@/pages/admin/pages/Setting'
 export default [{
   path: '/',
   exact: true,

@@ -12,7 +12,7 @@ import {
 import {connect} from 'react-redux'
 
 import Sidebar from '@/components/Sidebar'
-import routes from './routes'
+import routes from '@/routers/admin'
 
 class AdminIndex extends Component {
   static propTypes = {};

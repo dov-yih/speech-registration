@@ -14,7 +14,7 @@ import Archive from './archive'
 import NotFound from './error'
 import TopNavBar from '@/components/TopNavbar'
 import { SCHOOL_NUMBER} from '@/global'
-
+import IndexRouters from '@/routers/index'
 let schoolStr = SCHOOL_NUMBER.toString()
 let SCHOOL_NUMBER_REGEXP_STR = schoolStr.substr(2,schoolStr.length - 4)
 /**
@@ -44,10 +44,12 @@ export default class Pages extends Component {
         <TopNavBar />
         <Grid>
           <Switch>
-            <Route path="/login" component={Login} />
-            <Route path="/archives" component={Archive} />
+            {
+              IndexRouters.map((({path,exact,component},idx) => (
+                <Route key={idx} path={path} exact={exact} component={component} />
+              )))
+            }
             <Route path={`/:school_number(${SCHOOL_NUMBER_REGEXP_STR})`} component={Admin} />
-            Archive
             <Route exact path="/" component={Home} />
             <Route component={NotFound} />
           </Switch>

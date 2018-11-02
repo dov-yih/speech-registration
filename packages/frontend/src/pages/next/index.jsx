@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import {Row,Col} from 'react-bootstrap'
-
-import Archive from '@/network/archive'
+import { Row, Col } from 'react-bootstrap'
+import Next from '@/network/next'
 import SpeechList from '@/components/speech/List.jsx'
 
 export default class Index extends Component {
@@ -15,7 +14,7 @@ export default class Index extends Component {
 
   static propTypes = {}
   async componentDidMount() {
-    let { data } = await Archive.get();
+    let { data } = await Next.get();
     this.setState({ speeches: data })
   }
   render() {

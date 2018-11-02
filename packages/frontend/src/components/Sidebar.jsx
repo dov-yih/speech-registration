@@ -10,7 +10,7 @@ import {
   LinkContainer
 } from 'react-router-bootstrap'
 
-import routes from '@/pages/admin/routes'
+import routes from '@/routers/admin'
 import Avatar from './Avatar'
 
 export default class Sidebar extends Component {

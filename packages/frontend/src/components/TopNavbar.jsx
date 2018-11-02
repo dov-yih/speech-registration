@@ -13,30 +13,29 @@ import {
 import {
   LinkContainer
 } from 'react-router-bootstrap'
-
+import IndexRouters from '@/routers/index'
 const { Header, Brand} = Navbar
 export default class TopNavbar extends Component {
   static propTypes = {  }
 
   render() {
-    return <Navbar>
+    return (
+    <Navbar>
       <Header>
         <Brand>
           <NavLink to="/">创新实践演讲登记</NavLink>
         </Brand>
       </Header>
       <Nav pullRight>
-        <LinkContainer to="/archives">
-          <NavItem eventKey={1}>
-              历史演讲
-          </NavItem>
-        </LinkContainer>
-        <LinkContainer to="/login">
-          <NavItem eventKey={2}>
-              登陆
-          </NavItem>
-
-        </LinkContainer>
+        {
+          IndexRouters.map( ({path,name},idx) => (
+            <LinkContainer to={path}>
+              <NavItem eventKey={idx}>
+                  {name}
+              </NavItem>
+            </LinkContainer>
+          ))
+        }
         <NavDropdown eventKey={3} title="我的" id="basic-nav-dropdown">
           <LinkContainer to="/speech">
             <MenuItem eventKey={3.1}>记录</MenuItem>
@@ -47,5 +46,6 @@ export default class TopNavbar extends Component {
         </NavDropdown>
       </Nav>
     </Navbar>
+    )
   }
 }
