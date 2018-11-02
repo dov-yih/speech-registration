@@ -13,7 +13,7 @@ import {
 import {
   LinkContainer
 } from 'react-router-bootstrap'
-import IndexRouters from '@/routers/index'
+import IndexRouters from '@/routes/index'
 const { Header, Brand} = Navbar
 export default class TopNavbar extends Component {
   static propTypes = {  }
@@ -29,7 +29,7 @@ export default class TopNavbar extends Component {
       <Nav pullRight>
         {
           IndexRouters.map( ({path,name},idx) => (
-            <LinkContainer to={path}>
+            <LinkContainer key={idx} to={path}>
               <NavItem eventKey={idx}>
                   {name}
               </NavItem>

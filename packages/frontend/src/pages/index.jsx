@@ -14,7 +14,7 @@ import Archive from './archive'
 import NotFound from './error'
 import TopNavBar from '@/components/TopNavbar'
 import { SCHOOL_NUMBER} from '@/global'
-import IndexRouters from '@/routers/index'
+import IndexRouters from '@/routes/index'
 let schoolStr = SCHOOL_NUMBER.toString()
 let SCHOOL_NUMBER_REGEXP_STR = schoolStr.substr(2,schoolStr.length - 4)
 /**

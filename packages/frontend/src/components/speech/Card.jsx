@@ -82,7 +82,7 @@ class Speech extends Component {
               </Title>
             </Col>
             <Col md={1}>
-              <Label bsStyle="primary">{direction}</Label>
+              <Label style={{fontSize: '15px'}} bsStyle="primary">{direction}</Label>
             </Col>
             {/* // Next Version */}
             {/* <Col md={2}>
