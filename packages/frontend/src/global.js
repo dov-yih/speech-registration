@@ -1,5 +1,5 @@
 /**
- * BUG: here will wring when school number start with 3
+ * BUG: here will wrong when school number start with 3
  * I think 1, 2 is enough, because I don 't think this app
  * can live 12 years.
  * MUST Start with `/^` and end with `$/`
