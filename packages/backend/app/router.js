@@ -13,6 +13,7 @@ module.exports = app => {
   } = controller
   router.resources('speech', '/speeches', speech)
   router.resources('user', '/users', user)
+  router.get('archives', '/archives', speech.archive)
 
   router.post('getPublicKey', '/login', login.index)
   let auth = app.middleware.auth({prefix: '/admin'})

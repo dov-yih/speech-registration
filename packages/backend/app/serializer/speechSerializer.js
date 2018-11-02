@@ -14,6 +14,7 @@ module.exports = new Serializer('speech', {
     'direction',
     'pre_knowledge',
     'speaker_name',
-    's_no'
+    's_no',
+    'state'
   ]
 })

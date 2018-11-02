@@ -5,42 +5,41 @@ const Sequelize = require('sequelize')
 const UserSerializer = require('../serializer/speechSerializer')
 const deserialize = require('../serializer/deserializer')
 
-const {Op} = Sequelize
+const {
+  Op
+} = Sequelize
 
 class AdminSpeechController extends Controller {
   async index() {
-    const {
-      ctx
-    } = this
+    // const {ctx} = this
   }
 
   async show() {
     const {
-      ctx,
-      app
+      ctx
     } = this
     let {
       id
     } = ctx.params
-    const {
-      model
-    } = app
     // @see https://github.com/sequelize/sequelize/issues/2827
     // @see https://github.com/sequelize/sequelize/issues/2827#issuecomment-69709220
     // @see https://github.com/sequelize/sequelize/issues/2827#issuecomment-68712515
-    let selfSpeeches = await model.Speech.findAll({
-      where: {
-        s_no: id
-      }
-    })
     return ctx.body = UserSerializer.serialize(
-      selfSpeeches.map(speech => speech.toJSON())
+      await ctx.service.speech.filter('all', {
+        where: {
+          s_no: id
+        }
+      })
     )
-    // ctx.body = selfSpeeches || {msg: 'test'}
   }
   async create() {
-    const {ctx, app} = this
-    const {Label, User} = app.model
+    const {
+      ctx,
+      app
+    } = this
+    const {
+      Label
+    } = app.model
     let data = ctx.request.body
     let deserializedData = await deserialize(data)
     let tags = deserializedData.tags.split(',')
