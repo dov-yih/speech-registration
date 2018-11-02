@@ -3,43 +3,46 @@ import PropTypes from 'prop-types'
 import {
   Row,
   Col,
-  Nav,
-  NavItem,
 } from 'react-bootstrap'
-import {
-  LinkContainer
-} from 'react-router-bootstrap'
+
 import {
   Route,
+  Redirect
 } from 'react-router-dom'
+import {connect} from 'react-redux'
+
 import Sidebar from '@/components/Sidebar'
 import routes from './routes'
 
-export default class Admin extends Component {
-  static propTypes = {  }
+class AdminIndex extends Component {
+  static propTypes = {};
 
   render() {
-    const {match: {url}} = this.props
-    return (
-      <Row>
-        <Col bsStyle="pills" stacked="true" md={3}>
-          <Sidebar prefix={url} />
-        </Col>
-        {/* @see https://reacttraining.com/react-router/web/example/recursive-paths */}
-        <Col md={8} mdOffset={1}>
-          {
-            routes.map(
-              ({path, exact, component }, idx) =>
-                <Route
-                  key={idx}
-                  path={url + path}
-                  exact={exact}
-                  component={component}
-              />
-            )
-          }
-        </Col>
-      </Row>
-    )
+    const {
+      match: { url },
+      token,
+    } = this.props
+    return <Row>
+      <Col bsStyle="pills" stacked="true" md={3}>
+        <Sidebar prefix={url} />
+      </Col>
+      {/* @see https://reacttraining.com/react-router/web/example/recursive-paths */}
+      <Col md={8} mdOffset={1}>
+        {token.isLogin ? routes.map(({ path, exact, component }, idx) => (
+          <Route
+            key={idx}
+            path={url + path}
+            exact={exact}
+            component={component}
+          />
+        )) : <Redirect to="/login" />}
+      </Col>
+    </Row>
   }
 }
+export default connect(state => {
+  const {
+    token
+  } = state
+  return { token }
+})(AdminIndex)

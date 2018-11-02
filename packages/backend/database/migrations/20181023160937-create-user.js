@@ -12,12 +12,15 @@ module.exports = {
         type: Sequelize.STRING
       },
       s_no: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        // primaryKey: true,
+        unique: true
       },
       password: {
         type: Sequelize.STRING
       },
-      class: {
+      // class is JS's Key Words, use klass instead
+      klass: {
         type: Sequelize.INTEGER
       },
       avatar: {

@@ -8,7 +8,12 @@ module.exports = appInfo => {
   config.keys = appInfo.name + '_{{keys}}'
 
   // add your config here
-  config.middleware = []
+  config.middleware = [
+    // 'auth'
+  ]
+  // config.auth = {
+  //   prefix: '/admin'
+  // }
 
   // change to your own sequelize configurations
   config.sequelize = {

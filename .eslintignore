@@ -2,3 +2,11 @@ packages/frontend/config/
 packages/frontend/scripts/
 packages/frontend/build/
 node_modules
+
+# ignore test/ dir because *.test.js contain `it` & `descript`
+# which is not defind for eslint
+test/
+
+# this is extra lib
+packages/frontend/src/lib/jsencrypt.min.js
+packages/backend/app/utils/jsencrypt.js

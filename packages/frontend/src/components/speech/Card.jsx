@@ -38,7 +38,7 @@ export default
 class Speech extends Component {
   static propTypes = {  }
   handleChange(e){
-    console.log(e)
+    // TODO
   }
   render() {
     const {dataSrc, classes} = this.props

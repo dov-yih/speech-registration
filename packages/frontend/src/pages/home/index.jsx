@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import {
-  Grid,
   Row,
   Col,
 } from 'react-bootstrap'
-import {getSpeeches} from './request'
+import Speech from '@/network/speech'
 import SpeechList from '@/components/speech/List.jsx'
 
 export default class Home extends Component {
@@ -18,9 +17,8 @@ export default class Home extends Component {
 
   static propTypes = {  }
   async componentDidMount() {
-    let resp = await getSpeeches()
-    const speeches = resp.data
-    this.setState({ speeches})
+    let {data} = await Speech.get()
+    this.setState({ speeches: data })
   }
   render() {
     const { speeches } = this.state

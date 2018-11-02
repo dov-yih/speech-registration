@@ -12,8 +12,10 @@ import Login from './login'
 import Admin from './admin'
 import NotFound from './error'
 import TopNavBar from '@/components/TopNavbar'
-import { SCHOOL_NUMBER} from '../global'
+import { SCHOOL_NUMBER} from '@/global'
 
+let schoolStr = SCHOOL_NUMBER.toString()
+let SCHOOL_NUMBER_REGEXP_STR = schoolStr.substr(2,schoolStr.length - 4)
 /**
  *
  *
@@ -43,7 +45,7 @@ export default class Pages extends Component {
         <Grid>
           <Switch>
             <Route path="/login" component={Login} />
-            <Route path="/:school_number([12][0-9]{7,7})" component={Admin} />
+            <Route path={`/:school_number(${SCHOOL_NUMBER_REGEXP_STR})`} component={Admin} />
             <Route exact path="/" component={Home} />
             <Route component={NotFound}/>
           </Switch>

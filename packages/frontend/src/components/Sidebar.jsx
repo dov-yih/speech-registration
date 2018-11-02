@@ -36,22 +36,23 @@ export default class Sidebar extends Component {
     const {activeKey,currentUser: { name, s_no, avatar}} = this.state
 
     return <div style={{padding: '0 15%'}}>
-        <Row>
-            <Avatar />
-        </Row>
-        <Row>
-          <Nav activeKey={activeKey} bsStyle="pills" stacked onSelect={this.handleSelect}>
-            {/* WRONG @see https://github.com/react-bootstrap/react-router-bootstrap/blob/6ee8df44d93b73e737b472096e7e1f8cb8f6d4e1/src/LinkContainer.js#L40 */}
-            {routes.map(({ path, exact, name }, idx) => (
-              <LinkContainer
-                exact={exact}
-                to={`${prefix}${path === "/" ? "" : path}`}
-              >
-                <NavItem eventKey={1}>{name}</NavItem>
-              </LinkContainer>
-            ))}
-          </Nav>
-        </Row>
-      </div>;
+      <Row>
+        <Avatar />
+      </Row>
+      <Row>
+        <Nav activeKey={activeKey} bsStyle="pills" stacked onSelect={this.handleSelect}>
+          {/* WRONG @see https://github.com/react-bootstrap/react-router-bootstrap/blob/6ee8df44d93b73e737b472096e7e1f8cb8f6d4e1/src/LinkContainer.js#L40 */}
+          {routes.map(({ path, exact, name }, idx) => (
+            <LinkContainer
+              key={idx}
+              exact={exact}
+              to={`${prefix}${path === '/' ? '' : path}`}
+            >
+              <NavItem eventKey={1}>{name}</NavItem>
+            </LinkContainer>
+          ))}
+        </Nav>
+      </Row>
+    </div>
   }
 }

@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import {
-  Row,
   Image,
-  Thumbnail
 } from 'react-bootstrap'
 import withStyles from 'react-jss'
+import {connect} from 'react-redux'
 
-import { getUser } from '@/pages/admin/userReq'
+import User from '@/network/user'
+import {addUser} from '@/redux/actions'
 
 const styles = {
   container: {
@@ -15,12 +15,12 @@ const styles = {
   },
   avatar: {
     height: '64px',
-     width: '64px'
+    width: '64px'
   }
 }
-export default
+
 @withStyles(styles)
-class Sidebar extends Component {
+class Avatar extends Component {
   static propTypes = {
   }
   constructor(props) {
@@ -35,12 +35,22 @@ class Sidebar extends Component {
   }
 
   async componentDidMount() {
-    let resp = await getUser('160585222')
-    this.setState({ currentUser: resp.data })
+    const {user: sNo}= this.props
+    if(sNo) {
+      try {
+        let {data} = await User.getById(this.props.user.sNo)
+        this.setState({ currentUser:  data })
+        // FIXME s_no will been changed by the data which backend feedback
+        const {s_no,name, avatar} =  data
+        this.props.addUser(s_no, name, avatar)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    // not login
   }
   render() {
-    const { currentUser: { name, s_no, avatar } } = this.state
-    const {classes} = this.props
+    const {classes, user: {name, sNo, avatar} } = this.props
     return (
       <div className={classes.container}>
         <Image className={classes.avatar} src={avatar} responsive />
@@ -49,3 +59,8 @@ class Sidebar extends Component {
     )
   }
 }
+
+export default connect(
+  store => {return {user: store.user }},
+  {addUser}
+)(Avatar)

@@ -17,7 +17,7 @@ module.exports = {
       url: {
         type: Sequelize.STRING
       },
-      isPPT: {
+      is_ppt: {
         type: Sequelize.BOOLEAN
       },
       direction: {
@@ -44,7 +44,17 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE,
         defaultValue: Sequelize.fn('NOW'),
-      }
+      },
+      s_no: {
+        type: Sequelize.STRING,
+        onUpdate: 'CASCADE',
+        onDelete: 'SET NULL',
+        references: {
+          model: 'Users',
+          key: 's_no'
+        },
+        allowNull: true,
+      },
     })
   },
   down: (queryInterface, Sequelize) => {

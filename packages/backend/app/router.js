@@ -3,11 +3,21 @@ module.exports = app => {
     router,
     controller
   } = app
-  const { speech,login } = controller
-  router.resources('speech', '/speech', controller.speech)
-  router.resources('user', '/user', controller.user)
-  // Or
-  // router.resources('user', '/admin/user', controller.speech)
-  router.post('getPublicKey', '/login', controller.login.index)
-  router.post('getPublicKey', '/test', controller.login.test)
+  const {
+    speech,
+    login,
+    user,
+    adminSpeech,
+    tag,
+    direction,
+  } = controller
+  router.resources('speech', '/speeches', speech)
+  router.resources('user', '/users', user)
+
+  router.post('getPublicKey', '/login', login.index)
+  let auth = app.middleware.auth({prefix: '/admin'})
+  let adminRouter = router.namespace('/admin', auth)
+  adminRouter.resources('/speeches', adminSpeech)
+  adminRouter.resources('/tags', tag)
+  adminRouter.resources('/directions', direction)
 }

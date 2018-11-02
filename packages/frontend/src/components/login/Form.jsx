@@ -9,14 +9,18 @@ import {
 } from 'react-bootstrap'
 import withStyles from 'react-jss'
 import { Redirect} from 'react-router-dom'
-import JSEncrypt from '@/lib/jsencrypt.min.js'
-import { loginReq } from '@/pages/login/request'
+import {connect} from 'react-redux'
+import {newToken, addSNo} from '@/redux/actions'
 
-import { PUBLIC_KEY} from '../../keys.json'
-import { SCHOOL_NUMBER } from '../../global'
+import JSEncrypt from '@/lib/jsencrypt.min.js'
+// import { loginReq } from '@/pages/login/request'
+import Login from '@/network/login'
+
+import { PUBLIC_KEY} from '@/keys.json'
+import { SCHOOL_NUMBER } from '@/global'
 
 const { Feedback } = FormControl
-const { Dialog, Header,Title, Body,Footer } = Modal
+const {Header,Title, Body,Footer } = Modal
 
 const styles = {
   formControl: {
@@ -31,7 +35,6 @@ const styles = {
   }
 }
 
-export default
 @withStyles(styles)
 class LoginForm extends Component {
   static propTypes = { }
@@ -65,7 +68,7 @@ class LoginForm extends Component {
     if(!password) {
       return null
     }
-    if ( /[0-9a-zA-Z\!\@\#\$\%\^\&\*\_\=\+]{6}/.test(password)) {
+    if (/^[0-9a-zA-Z!@#$%^&*_=+]{6,20}$/.test(password)) {
       return 'success'
     }
     return 'error'
@@ -80,13 +83,13 @@ class LoginForm extends Component {
     sign.setPublicKey(PUBLIC_KEY)
     let encryptedPasswd = sign.encrypt(password)
     try{
-      let resp = await loginReq({
-        sNo: sNo,
-        password: encryptedPasswd
-      })
-      if(resp.data.error) {
-        return this.setState({isShow: true,errMsg: resp.data.error})
+      let data = await Login.post({ id: sNo, sNo: sNo, password: encryptedPasswd })
+      if(data.error) {
+        return this.setState({isShow: true,errMsg: data.error})
       }
+      const { newToken, addSNo } = this.props
+      newToken(data.token)
+      addSNo(sNo)
       // jump index
       this.setState({canJump: true, sNo})
     } catch(e) {
@@ -132,23 +135,29 @@ class LoginForm extends Component {
           Login
         </Button>
         { canJump
-        ? <Redirect to={`/${sNo}`} />
-        : <Modal show={isShow} className={classes.errorModal}>
-          <Header>
-            <Title bsClass="text-info">
+          ? <Redirect to={`/${sNo}`} />
+          : <Modal show={isShow} className={classes.errorModal}>
+            <Header>
+              <Title bsClass="text-info">
                 Network Error
-            </Title>
-          </Header>
-          <Body >
-            <Alert bsClass="text-danger text-center">
+              </Title>
+            </Header>
+            <Body >
+              <Alert bsClass="text-danger text-center">
                 Place reflesh pages.
-            </Alert>
-          </Body>
-          <Footer>
-            <Button onClick={this.handleClose}>Close</Button>
-          </Footer>
-        </Modal>}
+              </Alert>
+            </Body>
+            <Footer>
+              <Button onClick={this.handleClose}>Close</Button>
+            </Footer>
+          </Modal>}
       </div>
     )
   }
 }
+
+
+export default connect(
+  null,
+  { newToken,addSNo }
+)(LoginForm)

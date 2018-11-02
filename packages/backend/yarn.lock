@@ -2591,6 +2591,13 @@ egg-path-matching@^1.0.0, egg-path-matching@^1.0.1:
   dependencies:
     path-to-regexp "^1.7.0"
 
+egg-router-plus@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/egg-router-plus/-/egg-router-plus-1.3.0.tgz#94f73447141e75ce82620d04d4dc8e500ea8b27c"
+  integrity sha512-Y8aZ5/8cn52Hxa1c6uhASwxAzFHaihsyIOCjkKnjV/n6Z4GX9RSUK3jaxclQecei1dp0HDwEuhYwBqCBDtSaoQ==
+  dependencies:
+    is-type-of "^1.2.0"
+
 egg-schedule@^3.4.0:
   version "3.4.0"
   resolved "https://registry.yarnpkg.com/egg-schedule/-/egg-schedule-3.4.0.tgz#1a70bda4575b37ff86a0c5c7bcdd68557555ed07"
@@ -3835,6 +3842,11 @@ inflation@^2.0.0:
   resolved "https://registry.yarnpkg.com/inflation/-/inflation-2.0.0.tgz#8b417e47c28f925a45133d914ca1fd389107f30f"
   integrity sha1-i0F+R8KPklpFEz2RTKH9OJEH8w8=
 
+inflected@^1.1.6:
+  version "1.1.7"
+  resolved "http://registry.npm.taobao.org/inflected/download/inflected-1.1.7.tgz#c393df6e28472d0d77b3082ec3aa2091f4bc96f9"
+  integrity sha1-w5PfbihHLQ13swguw6ogkfS8lvk=
+
 inflection@1.12.0, inflection@^1.12.0:
   version "1.12.0"
   resolved "https://registry.yarnpkg.com/inflection/-/inflection-1.12.0.tgz#a200935656d6f5f6bc4dc7502e1aecb703228416"
@@ -4330,6 +4342,14 @@ json5@^0.5.1:
   resolved "https://registry.yarnpkg.com/json5/-/json5-0.5.1.tgz#1eade7acc012034ad84e2396767ead9fa5495821"
   integrity sha1-Hq3nrMASA0rYTiOWdn6tn6VJWCE=
 
+jsonapi-serializer@^3.6.2:
+  version "3.6.2"
+  resolved "http://registry.npm.taobao.org/jsonapi-serializer/download/jsonapi-serializer-3.6.2.tgz#c068f523293393ce3e8755b53130a19528cae763"
+  integrity sha1-wGj1Iykzk84+h1W1MTChlSjK52M=
+  dependencies:
+    inflected "^1.1.6"
+    lodash "^4.16.3"
+
 jsonfile@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/jsonfile/-/jsonfile-4.0.0.tgz#8771aae0799b64076b76640fca058f9c10e33ecb"
@@ -4681,7 +4701,7 @@ lodash.set@^4.0.0:
   resolved "https://registry.yarnpkg.com/lodash.set/-/lodash.set-4.3.2.tgz#d8757b1da807dde24816b0d6a84bea1a76230b23"
   integrity sha1-2HV7HagH3eJIFrDWqEvqGnYjCyM=
 
-lodash@^4.17.0, lodash@^4.17.1, lodash@^4.17.10, lodash@^4.17.4, lodash@^4.17.5, lodash@^4.2.0:
+lodash@^4.16.3, lodash@^4.17.0, lodash@^4.17.1, lodash@^4.17.10, lodash@^4.17.4, lodash@^4.17.5, lodash@^4.2.0:
   version "4.17.11"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.11.tgz#b39ea6229ef607ecd89e2c8df12536891cac9b8d"
   integrity sha512-cQKh8igo5QUhZ7lg38DYWAxMvjSAKG0A8wGSVimP07SIUEK2UO+arSRKbRZWtelMtN5V0Hkwh5ryOto/SshYIg==

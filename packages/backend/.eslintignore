@@ -1,0 +1,5 @@
+test/
+run/
+node_moules/
+logs/
+app/utils/jsencrypt.js
