@@ -23,22 +23,45 @@ import AdminSpeech from '@/network/adminSpeech'
 // url
 export default class Form extends Component {
   static propTypes = {
+    speech: PropTypes.shape({
+      subject: PropTypes.string.isRequired,
+      direction: PropTypes.string.isRequired,
+      introduce: PropTypes.string.isRequired,
+      pre_knowledge: PropTypes.string.isRequired,
+      tags: PropTypes.array.isRequired,
+      isPpt: PropTypes.bool,
+      url: PropTypes.string.isRequired,
+      speech_date: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object,
+      ]).isRequired,
+    }),
   }
-  constructor(props) {
-    super(props)
-    this.state = {
+  static defaultProps = {
+    speech: {
+      isPpt: false,
       subject: '',
       direction: '',
       introduce: '',
       pre_knowledge: '',
       tags: [],
-      isPPT: false,
       url: '',
-      speech_date:  moment(),
+      speech_date: moment(),
     }
   }
+  // static getDerivedStateFromProps(props, state) {
+  //   console.log(props,state)
+  //   state = props.speech
+  //   return state
+  // }
+
+  state = {
+    isPpt: false,
+    ...this.props.speech
+  }
+
   handleChange = (key, value) => {
-    this.setState({[key]: value})
+    this.setState({ [key]: value })
   }
 
   handleSwitchChange = (elem, state) => {
@@ -48,23 +71,24 @@ export default class Form extends Component {
   handelDateChange = (speech_date) => {
     this.setState({ speech_date })
   }
-  handleSubmit = async (e) => {
-    let {tags,...rest} = this.state
-    tags = tags.join(',')
-    try{
-      let data = await AdminSpeech.create({tags,...rest})
-      // TODO JUMP to profile
-    }catch(e) {
-      console.log(e)
-    }
-  }
-  handleCancel(e) {
+  // handleSubmit = async (e) => {
+  //   let { tags, ...rest } = this.state
+  //   tags = tags.join(',')
+  //   try {
+  //     let data = await AdminSpeech.create({ tags, ...rest })
+  //     // TODO JUMP to profile
+  //   } catch (e) {
+  //     console.log(e)
+  //   }
+  // }
+  handleReset(e) {
 
   }
   render() {
-    const { subject, isPPT, pre_knowledge, introduce, speech_date, url} = this.state
+    let {subject, isPpt, pre_knowledge,direction, introduce,tags, speech_date, url} = this.state
+    if( typeof speech_date === 'string') speech_date = moment(speech_date)
     return (
-      <div style={{marginBottom: '200px'}}>
+      <div>
         <Field label="演讲主题" type='text' value={subject}
           onChange={e => this.handleChange('subject', e.target.value)}
         />
@@ -74,11 +98,10 @@ export default class Form extends Component {
         />
         <Row>
           <Col md={6}>
-            <Select onChange={this.handleChange} label="方向" type="direction" />
+            <Select onChange={this.handleChange} valeu={direction} label="方向" type="direction" />
           </Col>
           <Col md={6}>
-            <MultipleSelect onChange={(value, option) => this.handleChange('tags',value)}  label="标签" />
-            {/* <Select multiple  /> */}
+            <MultipleSelect defaultValue={tags} onChange={(value, option) => this.handleChange('tags',value)}  label="标签" />
           </Col>
         </Row>
 
@@ -87,7 +110,7 @@ export default class Form extends Component {
           onChange={e => this.handleChange('pre_knowledge', e.target.value)}
         />
 
-        <Switch label="附加资料" isPPT={isPPT} value={url}
+        <Switch label="附加资料" isPPT={isPpt} value={url}
           onChange={e => this.handleChange('url',e.target.value)}
           onSwitch={this.handleSwitchChange}
         />
@@ -100,7 +123,7 @@ export default class Form extends Component {
           </Col>
 
           <Col md={2} sm={3}>
-            <Button onClick={this.handleCancel} bsStyle='danger'>重置</Button>
+            <Button onClick={this.handleReset} bsStyle='danger'>重置</Button>
           </Col>
         </Row>
       </div>
