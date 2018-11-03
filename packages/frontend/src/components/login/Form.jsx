@@ -10,7 +10,7 @@ import {
 import withStyles from 'react-jss'
 import { Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {newToken, addSNo} from '@/redux/actions'
+import { userLogin } from '@/redux/actions'
 
 import JSEncrypt from '@/lib/jsencrypt.min.js'
 // import { loginReq } from '@/pages/login/request'
@@ -87,9 +87,8 @@ class LoginForm extends Component {
       if(data.error) {
         return this.setState({isShow: true,errMsg: data.error})
       }
-      const { newToken, addSNo } = this.props
-      newToken(data.token)
-      addSNo(sNo)
+      const { userLogin } = this.props;
+      userLogin(sNo, data.token);
       // jump index
       this.setState({canJump: true, sNo})
     } catch(e) {
@@ -159,5 +158,5 @@ class LoginForm extends Component {
 
 export default connect(
   null,
-  { newToken,addSNo }
+  { userLogin }
 )(LoginForm)

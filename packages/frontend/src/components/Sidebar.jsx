@@ -48,7 +48,7 @@ export default class Sidebar extends Component {
               exact={exact}
               to={`${prefix}${path === '/' ? '' : path}`}
             >
-              <NavItem eventKey={1}>{name}</NavItem>
+              <NavItem>{name}</NavItem>
             </LinkContainer>
           ))}
         </Nav>

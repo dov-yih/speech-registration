@@ -20,7 +20,6 @@ class TopNavbar extends Component {
 
   render() {
     const {isLogin} = this.props
-    console.log(isLogin)
     return (
     <Navbar>
       <Header>
@@ -54,6 +53,6 @@ class TopNavbar extends Component {
   }
 }
 
-export default connect(state => {
-  return { isLogin: state.token.isLogin }
+export default connect(store => {
+  return { isLogin: store.user.isLogin };
 })(TopNavbar);
