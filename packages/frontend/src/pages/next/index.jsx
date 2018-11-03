@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Row, Col } from 'react-bootstrap'
-import Next from '@/network/next'
+import Speech from '@/network/speech'
 import SpeechList from '@/components/speech/List.jsx'
 
 export default class Index extends Component {
@@ -14,7 +14,7 @@ export default class Index extends Component {
 
   static propTypes = {}
   async componentDidMount() {
-    let { data } = await Next.get();
+    let { data } = await Speech.next();
     this.setState({ speeches: data })
   }
   render() {

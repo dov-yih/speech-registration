@@ -780,9 +780,9 @@
     glob-to-regexp "^0.3.0"
 
 "@nodelib/fs.stat@^1.0.1":
-  version "1.1.2"
-  resolved "http://registry.npm.taobao.org/@nodelib/fs.stat/download/@nodelib/fs.stat-1.1.2.tgz#54c5a964462be3d4d78af631363c18d6fa91ac26"
-  integrity sha1-VMWpZEYr49TXivYxNjwY1vqRrCY=
+  version "1.1.3"
+  resolved "http://registry.npm.taobao.org/@nodelib/fs.stat/download/@nodelib/fs.stat-1.1.3.tgz#2b5a3ab3f918cca48a8c754c08168e3f03eba61b"
+  integrity sha1-K1o6s/kYzKSKjHVMCBaOPwPrphs=
 
 "@svgr/core@^2.4.1":
   version "2.4.1"
@@ -4116,9 +4116,9 @@ globby@^6.1.0:
     pinkie-promise "^2.0.0"
 
 graceful-fs@^4.1.11, graceful-fs@^4.1.2, graceful-fs@^4.1.6:
-  version "4.1.11"
-  resolved "http://registry.npm.taobao.org/graceful-fs/download/graceful-fs-4.1.11.tgz#0e8bdfe4d1ddb8854d64e04ea7c00e2a026e5658"
-  integrity sha1-Dovf5NHduIVNZOBOp8AOKgJuVlg=
+  version "4.1.14"
+  resolved "http://registry.npm.taobao.org/graceful-fs/download/graceful-fs-4.1.14.tgz#1b6e8362ef8c5ecb5da799901f39297e3054773a"
+  integrity sha1-G26DYu+MXstdp5mQHzkpfjBUdzo=
 
 growly@^1.3.0:
   version "1.3.0"
@@ -6507,9 +6507,9 @@ node-pre-gyp@^0.10.0:
     tar "^4"
 
 node-releases@^1.0.0-alpha.11, node-releases@^1.0.1:
-  version "1.0.2"
-  resolved "http://registry.npm.taobao.org/node-releases/download/node-releases-1.0.2.tgz#27c296d9fca3b659c64f7d43ea47a31ad2a90e4b"
-  integrity sha1-J8KW2fyjtlnGT31D6kejGtKpDks=
+  version "1.0.3"
+  resolved "http://registry.npm.taobao.org/node-releases/download/node-releases-1.0.3.tgz#3414ed84595096459c251699bfcb47d88324a9e4"
+  integrity sha1-NBTthFlQlkWcJRaZv8tH2IMkqeQ=
   dependencies:
     semver "^5.3.0"
 
@@ -8614,10 +8614,10 @@ resolve@1.8.1, resolve@^1.3.2, resolve@^1.5.0, resolve@^1.6.0, resolve@^1.8.1:
   dependencies:
     path-parse "^1.0.5"
 
-resource-oriented-request@^0.1.6:
-  version "0.1.6"
-  resolved "http://registry.npm.taobao.org/resource-oriented-request/download/resource-oriented-request-0.1.6.tgz#1104840e2ec64ed0c6c7ef0519d2b76ebdb6fe31"
-  integrity sha1-EQSEDi7GTtDGx+8FGdK3br22/jE=
+resource-oriented-request@^0.1.7:
+  version "0.1.7"
+  resolved "http://registry.npm.taobao.org/resource-oriented-request/download/resource-oriented-request-0.1.7.tgz#17567f7a4f012b6efa8b7c95dfdcc6618785d264"
+  integrity sha1-F1Z/ek8BK276i3yV39zGYYeF0mQ=
   dependencies:
     axios "^0.18.0"
     kitsu-core "^6.4.0"
@@ -9087,9 +9087,9 @@ spdx-license-ids@^3.0.0:
   integrity sha1-pZ78CXhMKlutoTz+r1x13SFARNI=
 
 spdy-transport@^2.0.18:
-  version "2.1.0"
-  resolved "http://registry.npm.taobao.org/spdy-transport/download/spdy-transport-2.1.0.tgz#4bbb15aaffed0beefdd56ad61dbdc8ba3e2cb7a1"
-  integrity sha1-S7sVqv/tC+791WrWHb3Iuj4st6E=
+  version "2.1.1"
+  resolved "http://registry.npm.taobao.org/spdy-transport/download/spdy-transport-2.1.1.tgz#c54815d73858aadd06ce63001e7d25fa6441623b"
+  integrity sha1-xUgV1zhYqt0GzmMAHn0l+mRBYjs=
   dependencies:
     debug "^2.6.8"
     detect-node "^2.0.3"
