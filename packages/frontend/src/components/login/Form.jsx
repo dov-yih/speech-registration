@@ -87,8 +87,8 @@ class LoginForm extends Component {
       if(data.error) {
         return this.setState({isShow: true,errMsg: data.error})
       }
-      const { userLogin } = this.props;
-      userLogin(sNo, data.token);
+      const { userLogin } = this.props
+      userLogin(sNo, data.token)
       // jump index
       this.setState({canJump: true, sNo})
     } catch(e) {

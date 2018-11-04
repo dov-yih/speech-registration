@@ -41,19 +41,19 @@ export default class Pages extends Component {
  */
   render() {
     return <div>
-        <TopNavBar />
-        <Grid>
-          <Switch>
-            {
-              IndexRouters.map((({path,exact,component},idx) => (
-                <Route key={idx} path={path} exact={exact} component={component} />
-              )))
-            }
-            <Route path={`/:school_number(${SCHOOL_NUMBER_REGEXP_STR})`} component={Admin} />
-            <Route exact path="/" component={Home} />
-            <Route component={NotFound} />
-          </Switch>
-        </Grid>
-      </div>;
+      <TopNavBar />
+      <Grid>
+        <Switch>
+          {
+            IndexRouters.map((({path,exact,component},idx) => (
+              <Route key={idx} path={path} exact={exact} component={component} />
+            )))
+          }
+          <Route path={`/:school_number(${SCHOOL_NUMBER_REGEXP_STR})`} component={Admin} />
+          <Route exact path="/" component={Home} />
+          <Route component={NotFound} />
+        </Switch>
+      </Grid>
+    </div>
   }
 }

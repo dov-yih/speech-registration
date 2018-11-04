@@ -21,38 +21,38 @@ class TopNavbar extends Component {
   render() {
     const {isLogin} = this.props
     return (
-    <Navbar>
-      <Header>
-        <Brand>
-          <NavLink to="/">创新实践演讲登记</NavLink>
-        </Brand>
-      </Header>
-      <Nav pullRight>
-        {
-          IndexRouters.map( ({path,name},idx) => (
-            path === '/login' && isLogin
-            ? null
-            : <LinkContainer key={idx} to={path}>
-                <NavItem eventKey={idx}>
+      <Navbar>
+        <Header>
+          <Brand>
+            <NavLink to="/">创新实践演讲登记</NavLink>
+          </Brand>
+        </Header>
+        <Nav pullRight>
+          {
+            IndexRouters.map( ({path,name},idx) => (
+              path === '/login' && isLogin
+                ? null
+                : <LinkContainer key={idx} to={path}>
+                  <NavItem eventKey={idx}>
                     {name}
-                </NavItem>
-              </LinkContainer>
-          ))
-        }
-        <NavDropdown eventKey={3} title="我的" id="basic-nav-dropdown">
-          <LinkContainer to="/speech">
-            <MenuItem eventKey={3.1}>记录</MenuItem>
-          </LinkContainer>
-          <LinkContainer to="/speech/new">
-            <MenuItem eventKey={3.2}>新的演讲</MenuItem>
-          </LinkContainer>
-        </NavDropdown>
-      </Nav>
-    </Navbar>
+                  </NavItem>
+                </LinkContainer>
+            ))
+          }
+          <NavDropdown eventKey={3} title="我的" id="basic-nav-dropdown">
+            <LinkContainer to="/speech">
+              <MenuItem eventKey={3.1}>记录</MenuItem>
+            </LinkContainer>
+            <LinkContainer to="/speech/new">
+              <MenuItem eventKey={3.2}>新的演讲</MenuItem>
+            </LinkContainer>
+          </NavDropdown>
+        </Nav>
+      </Navbar>
     )
   }
 }
 
 export default connect(store => {
-  return { isLogin: store.user.isLogin };
-})(TopNavbar);
+  return { isLogin: store.user.isLogin }
+})(TopNavbar)

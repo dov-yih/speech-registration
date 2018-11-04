@@ -4,23 +4,66 @@ const {Op} = require('sequelize')
 // ?? FIXME this won't changed ??
 
 class SpeechService extends Service {
-  async createSpeech(partSpeechData) {
-    const {ctx, app} = this
-    const {Speech, User} = app.model
-    const {currUserSNo} = ctx
+  async getUserName(sNo) {
+    const {app} = this
+    const {User} = app.model
     let currUser = await User.findOne({
       attributes: ['name'],
       where: {
-        s_no: currUserSNo
+        s_no: sNo
       }
     })
-    const {name}  = currUser
+    return currUser.name
+  }
+  /**
+   *
+   *
+   * @param {*} partSpeechData
+   * @memberof SpeechService
+   */
+  async create(partSpeechData) {
+    const {ctx, app} = this
+    const {Speech} = app.model
+    const {currUserSNo} = ctx
+    const name = await this.getUserName(currUserSNo)
     const newSpeech = {
       ...partSpeechData,
       s_no: currUserSNo,
       speaker_name: name
     }
     Speech.create(newSpeech)
+  }
+  async update(partSpeechData) {
+    const {ctx, app} = this
+    const {Speech, User} = app.model
+    const {currUserSNo} = ctx
+    const name = await this.getUserName(currUserSNo)
+    const {id, ...restSpeechData} = partSpeechData
+    const newSpeech = {
+      ...restSpeechData,
+      s_no: currUserSNo,
+      speaker_name: name
+    }
+    Speech.update(newSpeech,{where: {
+      id: id
+    }})
+  }
+  /**
+   *
+   *
+   * @memberof SpeechService
+   */
+  async destroy(id) {
+    const {app} = this
+    const {Speech} = app.model
+    let deletedRowNum = await Speech.destroy({
+      where: {
+        id,
+      },
+      limit: 1, // for safe
+    })
+    // convert to boolean
+    return !!deletedRowNum
   }
   /**
    *

@@ -51,22 +51,22 @@ export default function (state = initialState, action) {
       sNo,
     }
   }
-   case NEW_TOKEN: {
-     const {
-       token
-     } = action.payload
-     return {
-       ...state,
-       value: token,
-       isLogin: true,
-     }
-   }
-   case SIGN_OUT: {
-     return {
-       value: '',
-       isLogin: false
-     }
-   }
+  case NEW_TOKEN: {
+    const {
+      token
+    } = action.payload
+    return {
+      ...state,
+      value: token,
+      isLogin: true,
+    }
+  }
+  case SIGN_OUT: {
+    return {
+      value: '',
+      isLogin: false
+    }
+  }
   default:
     return state
   }

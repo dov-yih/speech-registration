@@ -31,9 +31,9 @@ const styles = {
 }
 
 const stateColors = {
-  preparatory: "info",
-  processional: "success",
-  expired: "warning"
+  preparatory: 'info',
+  processional: 'success',
+  expired: 'warning'
 }
 /**
  *
@@ -69,38 +69,38 @@ class Speech extends Component {
     } = dataSrc
 
     return <Panel className={classes.card} eventKey={id} bsStyle={stateColors[state]}>
-        <Heading>
-          <Row>
-            <Col md={8}>
-              <Title className={classes.title} componentClass="h1">
-                {subject}
-              </Title>
-            </Col>
-            <Col md={2}>
-              <Title className={classes.subTitile} componentClass="h2">
-                {speaker_name}
-              </Title>
-            </Col>
-            <Col md={1}>
-              <Label style={{fontSize: '15px'}} bsStyle="primary">{direction}</Label>
-            </Col>
-            {/* // Next Version */}
-            {/* <Col md={2}>
+      <Heading>
+        <Row>
+          <Col md={8}>
+            <Title className={classes.title} componentClass="h1">
+              {subject}
+            </Title>
+          </Col>
+          <Col md={2}>
+            <Title className={classes.subTitile} componentClass="h2">
+              {speaker_name}
+            </Title>
+          </Col>
+          <Col md={1}>
+            <Label style={{fontSize: '15px'}} bsStyle="primary">{direction}</Label>
+          </Col>
+          {/* // Next Version */}
+          {/* <Col md={2}>
             <Star bsStyle={stateColors[state]}/>
             </Col> */}
-          </Row>
-        </Heading>
-        <Body>
-          <Tags dataSet={tags} />
-          <Section label="介绍">{introduce}</Section>
-          <Section label="预备知识">{pre_knowledge}</Section>
-          <Section label="演讲时间">{speech_date}</Section>
-          <Section label="链接" url>
-            {" "}
-            {url}{" "}
-          </Section>
-        </Body>
-        <Footer>创建: {created_date}</Footer>
-      </Panel>;
+        </Row>
+      </Heading>
+      <Body>
+        <Tags dataSet={tags} />
+        <Section label="介绍">{introduce}</Section>
+        <Section label="预备知识">{pre_knowledge}</Section>
+        <Section label="演讲时间">{speech_date}</Section>
+        <Section label="链接" url>
+          {' '}
+          {url}{' '}
+        </Section>
+      </Body>
+      <Footer>创建: {created_date}</Footer>
+    </Panel>
   }
 }

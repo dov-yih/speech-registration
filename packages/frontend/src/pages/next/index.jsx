@@ -14,7 +14,7 @@ export default class Index extends Component {
 
   static propTypes = {}
   async componentDidMount() {
-    let { data } = await Speech.next();
+    let { data } = await Speech.next()
     this.setState({ speeches: data })
   }
   render() {

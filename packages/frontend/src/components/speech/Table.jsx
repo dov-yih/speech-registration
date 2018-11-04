@@ -43,7 +43,7 @@ export default class Table extends Component {
                   <Button onClick={() => onModify(dataSet[idx])} bsStyle="warning">修改</Button>
                 </td>
               </tr>
-          ))}
+            ))}
         </tbody>
       </BsTable>
     )

@@ -29,7 +29,7 @@ class AdminIndex extends Component {
       {/* @see https://reacttraining.com/react-router/web/example/recursive-paths */}
       <Col md={8} mdOffset={1}>
         {user.isLogin
-        ? routes.map(({ path, exact, component }, idx) => (
+          ? routes.map(({ path, exact, component }, idx) => (
             <Route
               key={idx}
               path={url + path}
@@ -37,12 +37,12 @@ class AdminIndex extends Component {
               component={component}
             />
           ))
-        : <Redirect to="/login" />}
+          : <Redirect to="/login" />}
       </Col>
     </Row>
   }
 }
 export default connect(state => {
   const { user } = state
-  return { user };
+  return { user }
 })(AdminIndex)

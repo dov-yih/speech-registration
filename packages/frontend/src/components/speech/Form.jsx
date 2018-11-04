@@ -24,6 +24,7 @@ import AdminSpeech from '@/network/adminSpeech'
 export default class Form extends Component {
   static propTypes = {
     speech: PropTypes.shape({
+      id: PropTypes.any, // expect number or undefined/null
       subject: PropTypes.string.isRequired,
       direction: PropTypes.string.isRequired,
       introduce: PropTypes.string.isRequired,
@@ -36,9 +37,11 @@ export default class Form extends Component {
         PropTypes.object,
       ]).isRequired,
     }),
+    onSubmit: PropTypes.func.isRequired,
   }
   static defaultProps = {
     speech: {
+      id: null,
       isPpt: false,
       subject: '',
       direction: '',
@@ -71,20 +74,12 @@ export default class Form extends Component {
   handelDateChange = (speech_date) => {
     this.setState({ speech_date })
   }
-  // handleSubmit = async (e) => {
-  //   let { tags, ...rest } = this.state
-  //   tags = tags.join(',')
-  //   try {
-  //     let data = await AdminSpeech.create({ tags, ...rest })
-  //     // TODO JUMP to profile
-  //   } catch (e) {
-  //     console.log(e)
-  //   }
-  // }
+
   handleReset(e) {
 
   }
   render() {
+    let {onSubmit} = this.props
     let {subject, isPpt, pre_knowledge,direction, introduce,tags, speech_date, url} = this.state
     if( typeof speech_date === 'string') speech_date = moment(speech_date)
     return (
@@ -119,7 +114,8 @@ export default class Form extends Component {
 
         <Row style={{padding: '20px'}}>
           <Col md={2} sm={3}>
-            <Button onClick={this.handleSubmit} bsStyle='primary'>提交</Button>
+            {/* // only pass iterable data */}
+            <Button onClick={(e) => onSubmit({...this.state},e)} bsStyle='primary'>提交</Button>
           </Col>
 
           <Col md={2} sm={3}>
