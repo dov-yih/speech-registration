@@ -1,13 +1,9 @@
 const {
   Controller
 } = require('egg')
-const Sequelize = require('sequelize')
 const UserSerializer = require('../serializer/speechSerializer')
 const deserialize = require('../serializer/deserializer')
 const errorSerializer = require('../serializer/errorSerializer')
-const {
-  Op
-} = Sequelize
 
 class AdminSpeechController extends Controller {
   async index() {

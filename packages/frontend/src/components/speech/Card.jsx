@@ -96,8 +96,7 @@ class Speech extends Component {
         <Section label="预备知识">{pre_knowledge}</Section>
         <Section label="演讲时间">{speech_date}</Section>
         <Section label="链接" url>
-          {' '}
-          {url}{' '}
+          {url}
         </Section>
       </Body>
       <Footer>创建: {created_date}</Footer>

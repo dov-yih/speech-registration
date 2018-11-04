@@ -74,7 +74,6 @@ class SpeechService extends Service {
     const {ctx,app} = this
     const TODAY = moment().format('YYYY-MM-DD')
     const NEXT_WEEK = moment().add(1, 'weeks').format('YYYY-MM-DD')
-    // state = 'all'
     if (state === 'preparatory') {
       options.where.speech_date = {
         [Op.gt]: NEXT_WEEK

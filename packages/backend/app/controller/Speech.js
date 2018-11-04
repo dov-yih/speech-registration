@@ -16,9 +16,7 @@ class SpeechController extends Controller {
     )
   }
   async next() {
-    const {
-      ctx
-    } = this
+    const {ctx} = this
     ctx.body = UserSerializer.serialize(
       await ctx.service.speech.filter('preparatory')
     )
