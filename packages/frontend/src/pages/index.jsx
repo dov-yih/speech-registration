@@ -8,14 +8,13 @@ import {
   Grid,
 } from 'react-bootstrap'
 import Home from './home'
-import Login from './login'
 import Admin from './admin'
-import Archive from './archive'
 import NotFound from './error'
 import TopNavBar from '@/components/TopNavbar'
-import { SCHOOL_NUMBER} from '@/global'
+import { SCHOOL_NUMBER_RULE} from '@/global'
 import IndexRouters from '@/routes/index'
-let schoolStr = SCHOOL_NUMBER.toString()
+
+let schoolStr = SCHOOL_NUMBER_RULE.toString()
 let SCHOOL_NUMBER_REGEXP_STR = schoolStr.substr(2,schoolStr.length - 4)
 /**
  *

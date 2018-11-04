@@ -5,8 +5,10 @@
  * MUST Start with `/^` and end with `$/`
  *
  * @global
- * @export SCHOOL_NUMBER
+ * @export SCHOOL_NUMBER_RULE
  */
-export const SCHOOL_NUMBER = /^[12][0-9]{7,7}$/
+export const SCHOOL_NUMBER_RULE = /^[12][0-9]{7,7}$/
+
+export const PASSWORD_RULE = /^[0-9a-zA-Z!@#$%^&*_=+]{6,20}$/
 
 export const TERM_START_DATE = '2018-09-10'

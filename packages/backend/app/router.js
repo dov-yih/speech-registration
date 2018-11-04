@@ -8,6 +8,7 @@ module.exports = app => {
     login,
     user,
     adminSpeech,
+    adminUser,
     tag,
     direction,
   } = controller
@@ -20,6 +21,7 @@ module.exports = app => {
   let auth = app.middleware.auth({prefix: '/admin'})
   let adminRouter = router.namespace('/admin', auth)
   adminRouter.resources('/speeches', adminSpeech)
+  adminRouter.resources('/users', adminUser)
   adminRouter.resources('/tags', tag)
   adminRouter.resources('/directions', direction)
 }

@@ -35,7 +35,7 @@ class AdminSpeechController extends Controller {
     Label.tagsIncrement(tags)
 
     try {
-      ctx.service.speech.create(deserializedData)
+      await ctx.service.speech.create(deserializedData)
     } catch (e) {
       ctx.body = errorSerializer({
         code: 500, // ??
@@ -52,7 +52,7 @@ class AdminSpeechController extends Controller {
     let deserializedData = await deserialize(data)
 
     try {
-      ctx.service.speech.update(deserializedData)
+      await ctx.service.speech.update(deserializedData)
     } catch (e) {
       ctx.body = errorSerializer({
         code: 500, // ??
