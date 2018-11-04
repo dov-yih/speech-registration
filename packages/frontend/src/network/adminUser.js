@@ -1,4 +1,2 @@
 import Admin from './admin'
-export default class User extends Admin {
-
-}
+export default class User extends Admin { }

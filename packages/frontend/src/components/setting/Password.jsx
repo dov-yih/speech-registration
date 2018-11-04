@@ -11,8 +11,8 @@ class Password extends Component {
   static propTypes = { }
 
   state = {
-    oldPasswd: '12345678',
-    newPasswd: '123465789'
+    oldPasswd: '',
+    newPasswd: ''
   }
   handleSubmit = async (e) => {
     e.preventDefault()
@@ -25,7 +25,7 @@ class Password extends Component {
         new: encrypt(newPasswd)
       })
     } catch(e) {
-
+      console.log(e)
     }
   }
   render() {
