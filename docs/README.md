@@ -4,6 +4,8 @@
 
 > **前置必读,否则会一脸蒙逼**
 
+> **内容较多请选择阅读**
+
 + Ajax
   + [廖雪峰-Ajax](https://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000/001434499861493e7c35be5e0864769a2c06afb4754acc6000)
   + [MDN-Ajax](https://developer.mozilla.org/zh-CN/docs/Web/Guide/AJAX)
@@ -20,6 +22,17 @@
   + [现代化前端工程师权威指南](https://guoyongfeng.github.io/book/)
   + [现代化的前端开发工具与流程](http://www.voidcn.com/article/p-otrojasj-c.html)
   + [微前端 - 将微服务理念延伸到前端开发中](https://zhuanlan.zhihu.com/p/29981982)
++ Array
+  + [MDN-Array](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array)
+  + [菜鸟-Array](http://www.runoob.com/jsref/jsref-obj-array.html)
+  + [MDN-map](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
+  + [菜鸟-map](http://www.runoob.com/jsref/jsref-map.html)
++ npm & Package.json
+  + [官方文档](https://docs.npmjs.com/files/package.json)
+  + [npm 与 package.json 快速入门](https://juejin.im/entry/598286cb6fb9a03c5b04a4ff)
+  + [package.json文件-- JavaScript 标准参考教程（alpha）](http://javascript.ruanyifeng.com/nodejs/packagejson.html)
+  + [npm 与 package.json 快速入门教程](https://blog.csdn.net/u011240877/article/details/76582670)
+  +
 
 ## 前端
 
@@ -56,5 +69,6 @@
 
 + [廖雪峰--JavaScript教程](https://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000)
 + [《ECMAScript 6 入门》](http://es6.ruanyifeng.com/)
++ [React 入门实例教程- 阮一峰](http://www.ruanyifeng.com/blog/2015/03/react.html)
 + [RSA算法-百度百科](https://baike.baidu.com/item/RSA%E7%AE%97%E6%B3%95)
 + [npmjs.org](https://www.npmjs.com/)
