@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import {connect} from 'react-redux'
 
 import SpeechList from '@/components/speech/List'
 import AdminSpeech from '@/network/adminSpeech'
 
-export default class Index extends Component {
+class Index extends Component {
   static propTypes = {};
   constructor(props) {
     super(props)
@@ -13,7 +14,8 @@ export default class Index extends Component {
     }
   }
   async componentDidMount() {
-    let { data } = await AdminSpeech.getById('16058522')
+    const {sNo} = this.props
+    let { data } = await AdminSpeech.getById(sNo)
     this.setState({ speeches: data })
   }
   render() {
@@ -25,3 +27,9 @@ export default class Index extends Component {
     )
   }
 }
+
+export default connect(
+  store => {
+    return {sNo: store.user.sNo}
+  }
+)(Index)

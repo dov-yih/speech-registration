@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import {
-  NavLink
-} from 'react-router-dom'
+import {NavLink} from 'react-router-dom'
 import {
   Navbar,
   NavItem,
@@ -10,42 +8,51 @@ import {
   NavDropdown,
   MenuItem
 } from 'react-bootstrap'
-import {
-  LinkContainer
-} from 'react-router-bootstrap'
+import {LinkContainer} from 'react-router-bootstrap'
+import {connect} from 'react-redux'
+
+import IndexRouters from '@/routes/index'
 
 const { Header, Brand} = Navbar
-export default class TopNavbar extends Component {
+
+class TopNavbar extends Component {
   static propTypes = {  }
 
   render() {
-    return <Navbar>
-      <Header>
-        <Brand>
-          <NavLink to="/">创新实践演讲登记</NavLink>
-        </Brand>
-      </Header>
-      <Nav pullRight>
-        <LinkContainer to="/archives">
-          <NavItem eventKey={1}>
-              历史演讲
-          </NavItem>
-        </LinkContainer>
-        <LinkContainer to="/login">
-          <NavItem eventKey={2}>
-              登陆
-          </NavItem>
-
-        </LinkContainer>
-        <NavDropdown eventKey={3} title="我的" id="basic-nav-dropdown">
-          <LinkContainer to="/speech">
-            <MenuItem eventKey={3.1}>记录</MenuItem>
-          </LinkContainer>
-          <LinkContainer to="/speech/new">
-            <MenuItem eventKey={3.2}>新的演讲</MenuItem>
-          </LinkContainer>
-        </NavDropdown>
-      </Nav>
-    </Navbar>
+    const {isLogin} = this.props
+    return (
+      <Navbar>
+        <Header>
+          <Brand>
+            <NavLink to="/">创新实践演讲登记</NavLink>
+          </Brand>
+        </Header>
+        <Nav pullRight>
+          {
+            IndexRouters.map( ({path,name},idx) => (
+              path === '/login' && isLogin
+                ? null
+                : <LinkContainer key={idx} to={path}>
+                  <NavItem eventKey={idx}>
+                    {name}
+                  </NavItem>
+                </LinkContainer>
+            ))
+          }
+          <NavDropdown eventKey={3} title="我的" id="basic-nav-dropdown">
+            <LinkContainer to="/speech">
+              <MenuItem eventKey={3.1}>记录</MenuItem>
+            </LinkContainer>
+            <LinkContainer to="/speech/new">
+              <MenuItem eventKey={3.2}>新的演讲</MenuItem>
+            </LinkContainer>
+          </NavDropdown>
+        </Nav>
+      </Navbar>
+    )
   }
 }
+
+export default connect(store => {
+  return { isLogin: store.user.isLogin }
+})(TopNavbar)

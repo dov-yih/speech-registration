@@ -1,6 +1,12 @@
-import { SIGN_OUT, NEW_TOKEN,ADD_USER,ADD_SNO} from './actionTypes'
+import { SIGN_OUT, NEW_TOKEN,ADD_USER,ADD_SNO, USER_LOGIN} from './actionTypes'
 
-let Token = ''
+export const userLogin = (sNo, token) => ({
+  type: USER_LOGIN,
+  payload: {
+    token,
+    sNo,
+  }
+})
 export const newToken = token => ({
   type: NEW_TOKEN,
   payload: {

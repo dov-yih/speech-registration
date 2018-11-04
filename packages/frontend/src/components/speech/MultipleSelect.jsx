@@ -27,7 +27,7 @@ export default class MultipleSelect extends Component {
     this.setState({ dataSet })
   }
   render() {
-    const { onChange, label } = this.props
+    const { label, ...restProps} = this.props
     const { dataSet } = this.state
     return <div>
       <div>
@@ -35,10 +35,11 @@ export default class MultipleSelect extends Component {
         <Select
           style={{ width: '100%' }}
           multiple
-          onChange={onChange}
-          animation='slide-up'
           allowClear
+          defaultValue={['java','js']}
           tokenSeparators={[' ', ',']}
+          animation='slide-up'
+          {...restProps}
         >
           {dataSet.map((data, idx) => (
             <Option key={data.value} value={data.value}>{data.value}</Option>

@@ -12,7 +12,7 @@ import {
 import {connect} from 'react-redux'
 
 import Sidebar from '@/components/Sidebar'
-import routes from './routes'
+import routes from '@/routes/admin'
 
 class AdminIndex extends Component {
   static propTypes = {};
@@ -20,7 +20,7 @@ class AdminIndex extends Component {
   render() {
     const {
       match: { url },
-      token,
+      isLogin,
     } = this.props
     return <Row>
       <Col bsStyle="pills" stacked="true" md={3}>
@@ -28,21 +28,23 @@ class AdminIndex extends Component {
       </Col>
       {/* @see https://reacttraining.com/react-router/web/example/recursive-paths */}
       <Col md={8} mdOffset={1}>
-        {token.isLogin ? routes.map(({ path, exact, component }, idx) => (
-          <Route
-            key={idx}
-            path={url + path}
-            exact={exact}
-            component={component}
-          />
-        )) : <Redirect to="/login" />}
+        {isLogin
+          ? routes.map(
+            ({ path, exact, component }, idx) => (
+              <Route
+                key={idx}
+                path={url + path}
+                exact={exact}
+                component={component}
+              />
+            ))
+          : <Redirect to="/login" />
+        }
       </Col>
     </Row>
   }
 }
 export default connect(state => {
-  const {
-    token
-  } = state
-  return { token }
+  const { user: isLogin } = state
+  return { isLogin }
 })(AdminIndex)

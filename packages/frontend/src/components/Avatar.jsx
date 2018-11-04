@@ -39,7 +39,7 @@ class Avatar extends Component {
     if(sNo) {
       try {
         let {data} = await User.getById(this.props.user.sNo)
-        this.setState({ currentUser:  data })
+        // this.setState({ currentUser:  data })
         // FIXME s_no will been changed by the data which backend feedback
         const {s_no,name, avatar} =  data
         this.props.addUser(s_no, name, avatar)

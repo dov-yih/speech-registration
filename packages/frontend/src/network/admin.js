@@ -8,6 +8,6 @@ export default class Admin extends Base {
   static prefix = '/admin'
 
   static headers = {
-    authorization: 'Bearer ' + state.token.value
+    authorization: 'Bearer ' + state.user.token
   }
 }

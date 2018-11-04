@@ -25,12 +25,12 @@ export default class Select extends Component {
     this.setState({ dataSet })
   }
   render() {
-    const { onChange, type, label } = this.props
+    const { onChange, type, label, value } = this.props
     const { dataSet } = this.state
     return <div>
       <FormGroup>
         <ControlLabel>{label}:</ControlLabel>
-        <FormControl componentClass="select" onChange={e => onChange(type, e.target.value)}>
+        <FormControl componentClass="select" value={value} onChange={e => onChange(type, e.target.value)}>
           {dataSet.map((data, idx) => (
             <option key={idx} value={data.value}>{data.value}</option>
           ))}

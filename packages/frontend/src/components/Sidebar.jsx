@@ -10,7 +10,7 @@ import {
   LinkContainer
 } from 'react-router-bootstrap'
 
-import routes from '@/pages/admin/routes'
+import routes from '@/routes/admin'
 import Avatar from './Avatar'
 
 export default class Sidebar extends Component {
@@ -48,7 +48,7 @@ export default class Sidebar extends Component {
               exact={exact}
               to={`${prefix}${path === '/' ? '' : path}`}
             >
-              <NavItem eventKey={1}>{name}</NavItem>
+              <NavItem>{name}</NavItem>
             </LinkContainer>
           ))}
         </Nav>

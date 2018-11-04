@@ -1,5 +1,5 @@
 'use strict'
-const dateFormat = require('dateformat')
+const moment = require('moment')
 
 module.exports = app => {
   const {
@@ -24,7 +24,7 @@ module.exports = app => {
     speech_date: {
       type: DATE,
       get () {
-        return dateFormat(this.getDataValue.speech_date, 'fullDate')
+        return moment(this.getDataValue('speech_date')).format('YYYY-MM-DD')
       }
     },
     speaker_name: STRING,
@@ -32,7 +32,7 @@ module.exports = app => {
     underscored: true,
     getterMethods: {
       created_date() {
-        return dateFormat(this.getDataValue.created_at, 'fullDate')
+        return moment(this.getDataValue('created_at')).format('YYYY-MM-DD')
       }
     },
   })
