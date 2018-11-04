@@ -13,11 +13,10 @@ import {connect} from 'react-redux'
 import { userLogin } from '@/redux/actions'
 
 import JSEncrypt from '@/lib/jsencrypt.min.js'
-// import { loginReq } from '@/pages/login/request'
 import Login from '@/network/login'
 
 import { PUBLIC_KEY} from '@/keys.json'
-import { SCHOOL_NUMBER } from '@/global'
+import { SCHOOL_NUMBER_RULE, PASSWORD_RULE } from '@/global'
 
 const { Feedback } = FormControl
 const {Header,Title, Body,Footer } = Modal
@@ -57,7 +56,7 @@ class LoginForm extends Component {
     if(!sNo) {
       return null
     }
-    if (SCHOOL_NUMBER.test(sNo)) {
+    if (SCHOOL_NUMBER_RULE.test(sNo)) {
       return 'success'
     }
     return 'error'
@@ -68,8 +67,8 @@ class LoginForm extends Component {
     if(!password) {
       return null
     }
-    if (/^[0-9a-zA-Z!@#$%^&*_=+]{6,20}$/.test(password)) {
-      return 'success'
+    if (PASSWORD_RULE.test(password)) {
+      return "success";
     }
     return 'error'
   }
@@ -149,7 +148,8 @@ class LoginForm extends Component {
             <Footer>
               <Button onClick={this.handleClose}>Close</Button>
             </Footer>
-          </Modal>}
+          </Modal>
+        }
       </div>
     )
   }

@@ -1,14 +1,15 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import Password from '@/components/setting/Password'
 
-export default class Password extends Component {
+export default class Setting extends Component {
   static propTypes = {
   }
 
   render() {
     return (
       <div>
-        Setting Page.
+        <Password />
       </div>
     )
   }
