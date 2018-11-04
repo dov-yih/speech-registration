@@ -17,7 +17,8 @@ class Edit extends Component {
       speeches: [],
       showDelete: false,
       showModify: false,
-      speech: undefined,
+      showError: false,
+      speech: undefined, // speech Object which will be modify
       willDeleteId: -1,
     }
   }
@@ -30,44 +31,57 @@ class Edit extends Component {
     })
   }
 
-  handleDalete = willDeleteId => {
+  deleteTrigger = willDeleteId => {
     this.setState({ showDelete: true, willDeleteId })
-
   }
 
-  handleModify = speech => {
-    console.log(speech)
+  modifyTrigger = speech => {
     this.setState({ showModify: true, speech })
   }
   confirmedDelete = async()=>{
     const {willDeleteId} = this.state
-    let isSuccess = await AdminSpeech.delete(willDeleteId);
-    // next
+    try {
+      await AdminSpeech.delete(willDeleteId)
+      let speechesAferDelete = this.state.speeches.filter(
+        speech => speech.id !== willDeleteId
+      )
+      this.setState({speeches: speechesAferDelete, showDelete: false})
+    } catch (error) {
+      this.setState({showError: true})
+    }
   }
   handleSubmit = async speech => {
     let { tags, ...rest } = speech
     tags = tags.join(',')
     try {
       let data = await AdminSpeech.update({ tags, ...rest })
-      // TODO JUMP to profile
+      this.state.speeches.forEach( (speech,idx,arr) => {
+        if (parseInt(speech.id) === parseInt(data.id)) {
+          data.tags = data.tags.split(',')
+          arr[idx] = data
+        }
+      })
+      this.setState({speeches: this.state.speeches, showModify: false})
     } catch (e) {
-      console.log(e)
+      this.setState({showError: true})
     }
-  };
+  }
+
   handleClose = () => {
     this.setState({
       showDelete: false,
-      showModify: false
+      showModify: false,
+      showError: false,
     })
-  };
+  }
 
   render() {
-    const { speeches, showDelete, speech, showModify } = this.state
+    const { speeches, showDelete, speech, showModify,showError } = this.state
     return (
       <div>
         <Table
-          onDelete={this.handleDalete}
-          onModify={this.handleModify}
+          onDelete={this.deleteTrigger}
+          onModify={this.modifyTrigger}
           dataSet={speeches}
         />
 
@@ -99,6 +113,14 @@ class Edit extends Component {
             </Button>
           </Footer>
         </Modal>
+
+        <Modal keyboard onHide={this.handleClose} show={showError}>
+          <Header className="text-warning" closeButton>
+            出错啦!
+          </Header>
+          <Body className="text-danger">操作失败 &lt;-_-&gt;</Body>
+        </Modal>
+
       </div>
     )
   }
